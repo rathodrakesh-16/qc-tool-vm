@@ -496,6 +496,37 @@ export class AuthManager {
         return await response.json();
     }
 
+    async aiValidateStart(data) {
+        await this.ensureCsrfCookie();
+
+        const response = await fetch('/api/qc/ai-validate-start', {
+            method: 'POST',
+            credentials: 'include',
+            headers: this.buildJsonHeaders(),
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw await this.parseApiError(response, `AI validation start failed (${response.status})`);
+        }
+
+        return await response.json();
+    }
+
+    async aiValidateStatus(taskId) {
+        const response = await fetch(`/api/qc/ai-validate-status/${taskId}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: this.buildJsonHeaders(),
+        });
+
+        if (!response.ok) {
+            throw await this.parseApiError(response, `AI validation status failed (${response.status})`);
+        }
+
+        return await response.json();
+    }
+
     async ensureCsrfCookie() {
         await fetch('/sanctum/csrf-cookie', {
             method: 'GET',

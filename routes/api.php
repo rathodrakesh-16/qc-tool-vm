@@ -114,5 +114,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/config', [QualityControlController::class, 'config']);
         Route::post('/ai-validate', [QualityControlController::class, 'aiValidate'])
             ->middleware('throttle:ai-validate');
+        Route::post('/ai-validate-start', [QualityControlController::class, 'aiValidateStart'])
+            ->middleware('throttle:ai-validate');
+        Route::get('/ai-validate-status/{taskId}', [QualityControlController::class, 'aiValidateStatus']);
     });
 });

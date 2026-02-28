@@ -18,13 +18,14 @@
 8. [Deploy the Application](#8-deploy-the-application)
 9. [Configure Environment Variables](#9-configure-environment-variables)
 10. [Run Migrations and Setup](#10-run-migrations-and-setup)
-11. [Configure Nginx Virtual Host](#11-configure-nginx-virtual-host)
-12. [Set File Permissions](#12-set-file-permissions)
-13. [Configure PHP-FPM](#13-configure-php-fpm)
-14. [Firewall Rules](#14-firewall-rules)
-15. [Configure Gemini API](#15-configure-gemini-api)
-16. [Verify Everything Works](#16-verify-everything-works)
-17. [Common Issues & Fixes](#17-common-issues--fixes)
+11. [Set Up Queue Worker](#11-set-up-queue-worker)
+12. [Configure Nginx Virtual Host](#12-configure-nginx-virtual-host)
+13. [Set File Permissions](#13-set-file-permissions)
+14. [Configure PHP-FPM](#14-configure-php-fpm)
+15. [Firewall Rules](#15-firewall-rules)
+16. [Configure Gemini API](#16-configure-gemini-api)
+17. [Verify Everything Works](#17-verify-everything-works)
+18. [Common Issues & Fixes](#18-common-issues--fixes)
 
 ---
 
@@ -220,6 +221,8 @@ FRONTEND_URL=http://YOUR_EXTERNAL_IP
 
 CACHE_STORE=file
 
+QUEUE_CONNECTION=database
+
 GEMINI_API_KEY=your_gemini_api_key_here
 GEMINI_MODEL=gemini-2.5-flash
 GEMINI_ENABLED=true
@@ -241,7 +244,10 @@ sudo -u www-data php artisan key:generate
 ```bash
 cd /var/www/qctool
 
-# Run all migrations (creates users, sessions, and all app tables in one pass)
+# Create the Laravel jobs table (required for the async queue driver)
+sudo -u www-data php artisan queue:table
+
+# Run all migrations (creates users, sessions, jobs, and all app tables in one pass)
 sudo -u www-data php artisan migrate --force
 
 # Seed initial data (admin users etc.)
@@ -257,7 +263,53 @@ sudo -u www-data php artisan storage:link
 
 ---
 
-## 11. Configure Nginx Virtual Host
+## 11. Set Up Queue Worker
+
+The AI review feature processes PDM descriptions asynchronously using Laravel queues. A background worker must be running to handle these jobs.
+
+### Install Supervisor
+
+Supervisor keeps the queue worker running automatically, even after crashes or reboots.
+
+```bash
+sudo apt install -y supervisor
+```
+
+### Create the worker configuration:
+
+```bash
+sudo tee /etc/supervisor/conf.d/qctool-worker.conf > /dev/null << 'EOF'
+[program:qctool-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/qctool/artisan queue:work --sleep=3 --tries=1 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=www-data
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/var/www/qctool/storage/logs/worker.log
+EOF
+```
+
+### Start the worker:
+
+```bash
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start qctool-worker:*
+
+# Verify it's running
+sudo supervisorctl status
+# Expected: qctool-worker:qctool-worker_00   RUNNING   pid XXXXX, uptime 0:00:XX
+```
+
+> **Note:** Without the worker running, AI review requests will stay in `pending` state and the frontend will show a "queue worker may not be running" warning after 60 seconds.
+
+---
+
+## 12. Configure Nginx Virtual Host
 
 ```bash
 sudo nano /etc/nginx/sites-available/qctool
@@ -328,7 +380,7 @@ sudo systemctl reload nginx
 
 ---
 
-## 12. Set File Permissions
+## 13. Set File Permissions
 
 ```bash
 cd /var/www/qctool
@@ -345,7 +397,7 @@ sudo chmod -R 775 bootstrap/cache
 
 ---
 
-## 13. Configure PHP-FPM
+## 14. Configure PHP-FPM
 
 Increase timeouts to handle Gemini API calls (up to 120 seconds):
 
@@ -380,7 +432,7 @@ sudo systemctl enable php8.2-fpm
 
 ---
 
-## 14. Firewall Rules
+## 15. Firewall Rules
 
 ### In Google Cloud Console:
 
@@ -401,7 +453,7 @@ sudo ufw status
 
 ---
 
-## 15. Configure Gemini API
+## 16. Configure Gemini API
 
 Verify the API key is set in `.env` and the VM can reach Google's API:
 
@@ -417,7 +469,7 @@ If you get `000` — the VM has no outbound internet access. Check GCP egress fi
 
 ---
 
-## 16. Verify Everything Works
+## 17. Verify Everything Works
 
 Run these checks in order:
 
@@ -444,7 +496,11 @@ sudo systemctl status php8.2-fpm
 curl http://YOUR_EXTERNAL_IP/up
 # Expected: 200 OK
 
-# 7. Watch for errors
+# 7. Queue worker running
+sudo supervisorctl status qctool-worker:*
+# Expected: RUNNING
+
+# 8. Watch for errors
 sudo tail -f /var/www/qctool/storage/logs/laravel.log
 ```
 
@@ -453,7 +509,7 @@ Open `http://YOUR_EXTERNAL_IP` in your browser — you should see the QC Tool lo
 
 ---
 
-## 17. Common Issues & Fixes
+## 18. Common Issues & Fixes
 
 ### 502 Bad Gateway
 ```bash
@@ -498,6 +554,23 @@ grep fastcgi_read_timeout /etc/nginx/sites-available/qctool
 # Should show 130
 ```
 
+### AI review shows "queue worker may not be running"
+```bash
+# Check supervisor status
+sudo supervisorctl status
+
+# If stopped, start it
+sudo supervisorctl start qctool-worker:*
+
+# Check worker log for errors
+sudo tail -50 /var/www/qctool/storage/logs/worker.log
+
+# If supervisor isn't installed
+sudo apt install -y supervisor
+sudo supervisorctl reread && sudo supervisorctl update
+sudo supervisorctl start qctool-worker:*
+```
+
 ### Permission denied errors
 ```bash
 sudo chown -R www-data:www-data /var/www/qctool
@@ -519,6 +592,8 @@ sudo chmod -R 775 /var/www/qctool/bootstrap/cache
 | Nginx error log | `/var/log/nginx/error.log` |
 | PHP-FPM config | `/etc/php/8.2/fpm/pool.d/www.conf` |
 | PHP ini | `/etc/php/8.2/fpm/php.ini` |
+| Supervisor worker config | `/etc/supervisor/conf.d/qctool-worker.conf` |
+| Queue worker log | `/var/www/qctool/storage/logs/worker.log` |
 
 ---
 
@@ -544,4 +619,7 @@ sudo -u www-data php artisan route:cache
 
 # Fix permissions if needed
 sudo chown -R www-data:www-data /var/www/qctool
+
+# Restart queue worker to pick up new code
+sudo supervisorctl restart qctool-worker:*
 ```

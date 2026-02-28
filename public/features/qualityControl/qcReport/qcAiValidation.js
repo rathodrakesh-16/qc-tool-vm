@@ -12,6 +12,13 @@ const AI_WARNING_CLASS = 'ai-validation-warning';
 const AI_NO_ISSUES_CLASS = 'ai-no-issues';
 const STORAGE_KEY = 'aiValidationEnabled';
 
+const MAX_POLLS = 360;           // 360 × 2.5s = 15 minutes max
+const PENDING_TIMEOUT_POLLS = 24; // 24 × 2.5s = 60s before "worker offline" warning
+
+// Tracks the currently active polling job. Any poll loop whose jobId does not
+// match this value is stale and exits immediately (handles report-cleared / re-generate races).
+let activeJobId = null;
+
 /**
  * Check if AI validation is enabled (persisted preference).
  */
@@ -32,6 +39,7 @@ function setAiEnabled(enabled) {
  * Remove all injected AI validation blocks from PDM cards.
  */
 function clearAiValidation() {
+    activeJobId = null; // cancel any active polling loop
     document.querySelectorAll(
         `.${AI_SECTION_CLASS}, .${AI_LOADING_CLASS}, .${AI_WARNING_CLASS}, .${AI_NO_ISSUES_CLASS}`
     ).forEach(el => el.remove());
@@ -74,18 +82,18 @@ function renderAiErrors(pdmNum, errors) {
 
     if (errors.length === 0) {
         const noIssues = document.createElement('div');
-        noIssues.className = AI_NO_ISSUES_CLASS;
+        noIssues.className = `${AI_NO_ISSUES_CLASS} ai-feedback-block`;
         noIssues.innerHTML = `<i class="fas fa-robot"></i> <span>AI Review — No issues found</span>`;
         inner.appendChild(noIssues);
         return;
     }
 
     const section = document.createElement('div');
-    section.className = AI_SECTION_CLASS;
+    section.className = `${AI_SECTION_CLASS} ai-feedback-block`;
 
     const header = document.createElement('div');
     header.className = 'ai-header';
-    header.innerHTML = `<i class="fas fa-robot"></i> AI Review`;
+    header.innerHTML = `<i class="fas fa-robot"></i> AI Review <span class="ai-header-note">(AI can make mistakes, please review all suggestions carefully before applying them)</span>`;
     section.appendChild(header);
 
     const ol = document.createElement('ol');
@@ -161,10 +169,9 @@ function updateToggleState() {
 
 /**
  * Main handler: triggered after report is generated.
- * Reads pdmGroups, calls backend, injects results.
+ * Reads pdmGroups, calls backend async, polls for results.
  */
 async function runAiValidation() {
-    // Skip if AI is disabled
     if (!isAiEnabled()) {
         clearAiValidation();
         return;
@@ -186,32 +193,89 @@ async function runAiValidation() {
     showLoadingIndicators(pdmNums);
 
     try {
-        const response = await authManager.aiValidatePdmDescriptions({ pdmDescriptions });
-
-        // Remove all loading indicators
-        document.querySelectorAll(`.${AI_LOADING_CLASS}`).forEach(el => el.remove());
+        const response = await authManager.aiValidateStart({ pdmDescriptions });
 
         if (!response.enabled) {
+            document.querySelectorAll(`.${AI_LOADING_CLASS}`).forEach(el => el.remove());
             return;
         }
 
-        if (response.warning) {
-            showWarningInCards(pdmNums, response.warning);
+        // Cache hit — render immediately, no polling needed
+        if (response.cached) {
+            document.querySelectorAll(`.${AI_LOADING_CLASS}`).forEach(el => el.remove());
+            if (response.warning) {
+                showWarningInCards(pdmNums, response.warning);
+            } else {
+                const errorsMap = {};
+                (response.results || []).forEach(r => { errorsMap[r.pdmNum] = r.aiErrors || []; });
+                pdmNums.forEach(p => renderAiErrors(p, errorsMap[p] || []));
+            }
             return;
         }
 
-        const errorsMap = {};
-        (response.results || []).forEach(r => {
-            errorsMap[r.pdmNum] = r.aiErrors || [];
-        });
-
-        pdmNums.forEach(pdmNum => {
-            const errors = errorsMap[pdmNum] || [];
-            renderAiErrors(pdmNum, errors);
-        });
+        // Async path — poll until complete, rendering results as batches finish
+        activeJobId = response.jobId;
+        const renderedSet = new Set();
+        pollAiValidationStatus(response.jobId, pdmNums, renderedSet, 0);
 
     } catch (error) {
+        document.querySelectorAll(`.${AI_LOADING_CLASS}`).forEach(el => el.remove());
         showWarningInCards(pdmNums, 'AI review unavailable');
+    }
+}
+
+/**
+ * Poll the backend for job progress, rendering results as each batch completes.
+ * @param {string} jobId
+ * @param {string[]} allPdmNums
+ * @param {Set<string>} renderedSet - tracks which PDM cards have already been rendered
+ * @param {number} pollCount
+ */
+async function pollAiValidationStatus(jobId, allPdmNums, renderedSet, pollCount) {
+    // Bail if this loop was superseded by a new report or clearAiValidation()
+    if (jobId !== activeJobId) return;
+
+    if (pollCount >= MAX_POLLS) {
+        document.querySelectorAll(`.${AI_LOADING_CLASS}`).forEach(el => el.remove());
+        const unrendered = allPdmNums.filter(p => !renderedSet.has(p));
+        showWarningInCards(unrendered, 'AI review timed out. Please try again.');
+        return;
+    }
+
+    try {
+        const status = await authManager.aiValidateStatus(jobId);
+
+        // If still pending after 60 seconds, the queue worker may not be running
+        if (pollCount >= PENDING_TIMEOUT_POLLS && status.status === 'pending') {
+            document.querySelectorAll(`.${AI_LOADING_CLASS}`).forEach(el => el.remove());
+            showWarningInCards(allPdmNums, 'AI review is taking longer than expected. The queue worker may not be running.');
+            return;
+        }
+
+        // Render any newly completed PDMs from this poll
+        (status.results || []).forEach(r => {
+            if (!renderedSet.has(r.pdmNum)) {
+                renderAiErrors(r.pdmNum, r.aiErrors || []);
+                renderedSet.add(r.pdmNum);
+            }
+        });
+
+        if (status.status === 'complete' || status.status === 'failed') {
+            document.querySelectorAll(`.${AI_LOADING_CLASS}`).forEach(el => el.remove());
+            const unrendered = allPdmNums.filter(p => !renderedSet.has(p));
+            if (status.warning && unrendered.length > 0) {
+                showWarningInCards(unrendered, status.warning);
+            }
+            return;
+        }
+
+        // Schedule next poll
+        setTimeout(() => pollAiValidationStatus(jobId, allPdmNums, renderedSet, pollCount + 1), 2500);
+
+    } catch (error) {
+        document.querySelectorAll(`.${AI_LOADING_CLASS}`).forEach(el => el.remove());
+        const unrendered = allPdmNums.filter(p => !renderedSet.has(p));
+        showWarningInCards(unrendered, 'AI review unavailable');
     }
 }
 
