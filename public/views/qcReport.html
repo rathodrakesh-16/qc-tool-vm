@@ -1,0 +1,28 @@
+<div id="qcReport" class="blank-sheet">
+  <div class="header-container">
+    <h1>QC Report</h1>
+    <div class="header-right">
+      <label class="ai-toggle-switch" title="Toggle AI Review">
+        <input type="checkbox" id="aiToggleCheckbox">
+        <span class="ai-toggle-slider"></span>
+      </label>
+      <span class="ai-toggle-label">Enable AI Review</span>
+      <button class="generate-qc-btn"><i class="fas fa-bolt"></i> Generate</button>
+      <button class="export-qc-btn"><i class="fas fa-file-export"></i> Export</button>
+      <button class="clear-qc-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+    </div>
+  </div>
+  <div class="qc-report-container">
+    <div class="qc-report-wrapper">
+      <div id="reportSections" class="report-sections">
+        <div id="unsupportedSection"></div>
+        <div id="deletedSection"></div>
+        <div id="pdmDetailsSection"></div>
+      </div>
+      <div id="primaryValidationSection" class="primary-validation-section"></div>
+    </div>
+  </div>
+  <span class="scroll-to-top-icon" title="Scroll to Top">
+    <i class="fas fa-chevron-up"></i>
+  </span>
+</div>

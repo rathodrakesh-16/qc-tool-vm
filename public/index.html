@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title id="appTitle">QC Tool</title>
+
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- Core / Global Styles -->
+  <link rel="stylesheet" href="core/app.css?v=0.2" />
+  <link rel="stylesheet" href="components/notification.css?v=0.2" />
+  <link rel="stylesheet" href="components/skeleton.css?v=0.2" />
+
+  <!-- Login and User Pages -->
+  <link rel="stylesheet" href="pages/login/loginPage.css?v=0.2" />
+  <link rel="stylesheet" href="pages/user/userProfilePage.css?v=0.2" />
+
+  <!-- Dashboard -->
+  <link rel="stylesheet" href="features/dashboard/dashboard.css?v=0.2" />
+  <link rel="stylesheet" href="features/dashboard/sections/assignedAccountsSection.css?v=0.2" />
+  <link rel="stylesheet" href="features/dashboard/sections/documentsSection.css?v=0.2" />
+
+  <!-- Dashboard Modals -->
+  <link rel="stylesheet" href="features/dashboard/modals/accountManagementModal.css?v=0.2" />
+  <link rel="stylesheet" href="features/dashboard/modals/documentManagementModal.css?v=0.2" />
+
+  <!-- Admin Panel -->
+  <link rel="stylesheet" href="features/admin/adminDashboard.css?v=0.2" />
+
+  <!-- Quality Control -->
+  <link rel="stylesheet" href="features/qualityControl/importSection/importSection.css?v=0.2" />
+  <link rel="stylesheet" href="features/qualityControl/qcReport/qcReport.css?v=0.2" />
+  <link rel="stylesheet" href="features/qualityControl/qcReport/qcAiValidation.css?v=0.2" />
+
+  <!-- Workspace Base -->
+  <link rel="stylesheet" href="features/workspace/workspace.css?v=0.2" />
+
+  <!-- Workspace Editor -->
+  <link rel="stylesheet" href="features/workspace/editor/editorWorkspace.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/editor/production.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/editor/productionReport.css?v=0.2" />
+
+  <!-- Workspace Shared Components -->
+  <link rel="stylesheet" href="features/workspace/sharedComponents/pdmUtils.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/sharedComponents/accountData.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/sharedComponents/filters.css?v=0.2" />
+
+  <!-- Workspace QC -->
+  <link rel="stylesheet" href="features/workspace/qc/qcWorkspace.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/qc/qcReview.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/qc/qcValidation.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/qc/workspaceQcReport.css?v=0.2" />
+
+  <!-- Workspace Modals -->
+  <link rel="stylesheet" href="features/workspace/modals/changeLogModal.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/modals/qcFeedbackModal.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/modals/headingDetailsModal.css?v=0.2" />
+  <link rel="stylesheet" href="features/workspace/modals/familyAssignModal.css?v=0.2" />
+
+  <!-- App Icon -->
+  <link rel="icon" type="image/main.jfif" href="assets/main.jfif" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+</head>
+
+<body>
+  <div class="sidebar">
+    <div>
+      <div class="header sidebar-header-flex">
+        <div class="sidebar-company-name">
+          <img src="assets/Logo.jpeg" alt="Company Logo" class="sidebar-logo" />Technosoft Engineering
+        </div>
+      </div>
+      <button class="disabled" data-route="/dashboard">
+        <span class="icon-container"><i class="fa-solid fa-table-columns"></i></span>
+        Dashboard
+      </button>
+      <button class="disabled workspace-btn">
+        <span class="icon-container"><i class="fa-regular fa-folder"></i></span>
+        Workspace
+      </button>
+      <div id="workspaceButtons" class="nested-buttons hidden">
+        <button class="disabled nested-btn" data-route="/workspace">
+          Client Accounts
+        </button>
+      </div>
+      <button class="disabled quality-control-btn">
+        <span class="icon-container"><i class="fa-regular fa-circle-check"></i></span>
+        Quality Control
+      </button>
+      <div id="qualityControlButtons" class="nested-buttons hidden">
+        <button class="disabled nested-btn" data-route="/import-section">
+          Import Section
+        </button>
+        <button class="disabled nested-btn" data-route="/qc-report">
+          QC Report
+        </button>
+      </div>
+      <button class="disabled">
+        <span class="icon-container"><i class="fa-solid fa-layer-group"></i></span>
+        Knowledge Hub
+      </button>
+    </div>
+    <div class="footer">
+      <div class="footer-content">
+        <div id="currentUserDisplay" class="sidebar-user-display">
+          <i class="fas fa-user-circle"></i>
+          <span id="currentUsername"></span>
+        </div>
+        <div class="footer-actions justify-center">
+          <span id="appVersionText" class="version-text">QC Tool</span>
+          <i class="fas fa-info-circle version-info-icon" title="View Updates"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+  </div>
+
+  <!-- Single ES Module Entry Point -->
+  <script type="module" src="main.js?v=0.2"></script>
+
+</body>
+
+</html>

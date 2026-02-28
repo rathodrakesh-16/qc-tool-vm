@@ -1,0 +1,136 @@
+@import "./sections/userManagementSection.css?v=0.2";
+
+/* Admin Dashboard Styles */
+
+/* CSS Variables for consistent theming */
+:root {
+    --admin-text-primary: #1f2937;
+    --admin-text-secondary: #6b7280;
+    --admin-border: #e5e7eb;
+    --admin-border-light: #f3f4f6;
+    --admin-bg-white: #ffffff;
+    --admin-bg-gray: #f9fafb;
+    --admin-radius-md: 8px;
+    --admin-col-user-id: 280px;
+    --admin-col-name: 200px;
+    --admin-col-role: 100px;
+    --admin-col-designation: 180px;
+    --admin-col-team: 150px;
+    --admin-col-location: 200px;
+    --admin-col-status: 90px;
+    --admin-col-actions: 90px;
+}
+
+#adminPanel {
+    padding: 0 15px 15px 15px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+#adminPanel * {
+    box-sizing: border-box;
+}
+
+.admin-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 16px;
+}
+
+.admin-header-container h1 {
+    font-size: 16px;
+    color: #2C333A;
+    margin-left: 5px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+.admin-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Admin Logout Button */
+.admin-logout-btn {
+    padding: 6px 14px;
+    background-color: #fee2e2;
+    color: #ef4444;
+    border: 1px solid #fca5a5;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.admin-logout-btn:hover {
+    background-color: #fecaca;
+    border-color: #f87171;
+}
+
+.admin-logout-btn i {
+    font-size: 12px;
+}
+
+.admin-logout-btn.is-logging-out {
+    opacity: 0.8;
+    cursor: wait;
+    pointer-events: none;
+}
+
+.admin-logout-btn.is-logging-out:hover {
+    background-color: #fee2e2;
+    border-color: #fca5a5;
+}
+
+/* Admin Panel Shell */
+.admin-panel {
+    background-color: var(--admin-bg-white);
+    border-radius: 6px;
+    padding: 16px;
+    border: 1px solid var(--admin-border);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+}
+
+/* Header Logout Button */
+.logout-btn-header {
+    padding: 6px 14px;
+    background-color: #fee2e2;
+    color: #ef4444;
+    border: 1px solid #fca5a5;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.logout-btn-header:hover {
+    background-color: #fecaca;
+    border-color: #f87171;
+}
+
+.logout-btn-header i {
+    font-size: 12px;
+}

@@ -1,0 +1,42 @@
+/* QC Validation - Action Buttons */
+.qc-validation-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+    justify-content: flex-end;
+}
+
+.qc-validation-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    flex: 1;
+    justify-content: center;
+}
+
+.qc-btn-feedback {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.qc-btn-feedback:hover {
+    background-color: #357abd;
+}
+
+.qc-btn-confirmed {
+    background-color: #10b981;
+    color: white;
+}
+
+.qc-btn-confirmed:hover {
+    background-color: #059669;
+}

@@ -1,0 +1,47 @@
+<div id="dashboard" class="blank-sheet">
+  <div class="header-container">
+    <h1>Dashboard</h1>
+    <div class="header-right">
+      <button class="create-account-btn">
+        <i class="fas fa-plus"></i> Add Account
+      </button>
+      <button class="create-account-btn add-document-btn">
+        <i class="fas fa-plus"></i> Add Document
+      </button>
+    </div>
+  </div>
+  <div class="dashboard-grid">
+    <div class="assigned-accounts-panel dashboard-panel">
+      <div class="assigned-accounts-header">
+        <h2>Assigned Accounts</h2>
+        <div class="dashboard-search-filter">
+
+          <div class="dashboard-search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dashboardSearchInput" placeholder="Search accounts, editors, or QC..." />
+          </div>
+
+          <select class="dashboard-filter-select" id="dashboardStatusFilter">
+            <option value="all">All Status</option>
+          </select>
+
+        </div>
+      </div>
+
+      <div class="assigned-accounts-cards-container" id="assignedAccountsContainer"></div>
+
+      <div class="assigned-accounts-pagination">
+        <button class="pagination-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <span id="pageInfo">1 / 1</span>
+        <button class="pagination-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    <div class="dashboard-documents-panel dashboard-panel">
+      General SOPs & Documents
+    </div>
+  </div>
+</div>

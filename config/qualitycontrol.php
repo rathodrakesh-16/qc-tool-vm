@@ -1,0 +1,70 @@
+<?php
+
+return [
+    'validation' => [
+        'min_word_count' => 20,
+        'max_word_count' => 115,
+        'max_headings' => 8,
+        'url_pattern' => '/^https?:\/\//i',
+        'forbidden_url_words' => [
+            'thomasnet' => 'Link contains Thomas profile.',
+            'stage' => 'Link contains stage environment.',
+        ],
+        'forbidden_brands' => [
+            'Teflon',
+            'Velcro',
+            'Wire-Nut',
+            'Paintstik',
+            'Paint Stick',
+            'Arduino',
+            'Dyno-Mill',
+            'Turbula',
+            'Nordson',
+        ],
+        'quality_values' => [
+            'Supported by Xometry Content',
+            'Supported by Profile Content',
+            'Unprocessed',
+            'Supported by Inference',
+            'Secondary Services',
+            'Unsupported',
+            'Supported by Website Content',
+            'Supported by Rep Confirmation',
+            'Self-Serve Unranked',
+        ],
+        'forbidden_quality_values' => [
+            'Self-Serve Unranked',
+            'Supported by Rep Confirmation',
+            'Secondary Services',
+            'Supported by Xometry Content',
+        ],
+    ],
+    'export' => [
+        'font_size' => 11,
+        'font_family' => 'Calibri',
+        'header_bg_color' => 'D3D3D3',
+        'default_widths' => [
+            'label' => 20,
+            'value' => 60,
+        ],
+    ],
+    'classification_columns' => [
+        'classificationId',
+        'classification',
+        'category',
+        'family',
+        'rankPoints',
+        'companyType',
+        'siteLink',
+        'quality',
+        'profileDescription',
+        'pdmText',
+        'headingType',
+    ],
+    'gemini' => [
+        'api_key' => env('GEMINI_API_KEY', ''),
+        'model' => env('GEMINI_MODEL', 'gemini-2.5-flash'),
+        'enabled' => env('GEMINI_ENABLED', true),
+        'verify_ssl' => env('GEMINI_VERIFY_SSL', true),
+    ],
+];

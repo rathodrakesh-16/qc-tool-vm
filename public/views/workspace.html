@@ -1,0 +1,1084 @@
+<div id="workspace" style="display: none">
+  <div class="workspace-container">
+    <!-- Reusable Account & Mode Selection Section -->
+    <div class="workspace-account-section" id="sharedWorkspaceAccountSection">
+      <div class="settings-section">
+        <div id="workspaceSettingsBtn" class="settings-container flex-center-gap text-ellipsis">
+          <i class="fas fa-cog font-size-12"></i>
+          <span class="settings-text">Settings</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="editorModeContainer" class="mode-container active">
+      <div class="editor-mode-section">
+        <div class="editor-mode-section-header">
+          <div class="editor-mode-tabs">
+            <span class="section-header-label">Editor Workspace</span>
+            <span class="section-header-separator">|</span>
+            <button class="editor-tab-btn active" data-tab="workspace">
+              <i class="fas fa-th-large"></i>
+              Production
+            </button>
+
+            <button class="editor-tab-btn" data-tab="production-report">
+              <i class="fas fa-file-invoice"></i>
+              Production Report
+            </button>
+            <button class="editor-tab-btn" data-tab="account-files">
+              <i class="fas fa-folder"></i>
+              Account Data
+            </button>
+          </div>
+
+          <div class="header-right-actions">
+            <!-- Change Logs Section (Editor Mode) -->
+            <span id="editorSelectedAccount" class="selected-account-name">No Account Selected</span>
+
+            <!-- Export PDM Button -->
+            <div class="change-logs-section">
+              <div id="exportPdmBtn" class="change-logs-container flex-center-gap text-ellipsis"
+                title="Export PDMs to Excel">
+                <i class="fas fa-file-export font-size-12"></i>
+                <span class="export-pdm-text">Export</span>
+              </div>
+            </div>
+
+            <div class="change-logs-section">
+              <div id="editorChangeLogsContainer" class="change-logs-container flex-center-gap text-ellipsis">
+                <i class="fas fa-history font-size-12"></i>
+                <span class="change-logs-text">Change Logs</span>
+              </div>
+            </div>
+
+            <!-- Shared Actions Placeholder (Editor) -->
+            <div class="editor-header-actions-wrapper" id="editorHeaderActionsWrapper"></div>
+          </div>
+        </div>
+
+        <div class="editor-tab-content active" id="productionTab">
+          <div class="production-container">
+            <div class="production-section production-import-headings">
+              <div class="production-section-header">
+                <h2 class="production-section-title">
+                  <i class="fa-solid fa-list"></i>
+                  Import Headings
+                </h2>
+                <div class="header-actions flex-center-gap">
+                  <span id="importCount" class="supported-count" style="margin-right: 8px">0 headings</span>
+                  <input type="file" id="headingsFileInput" accept=".xlsx,.xls,.csv" style="display: none" />
+                  <button id="importHeadingsBtn" class="import-btn import-btn-small" title="Import Headings">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                  <button id="importHistoryBtn" class="import-history-btn">
+                    <i class="fas fa-history"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="import-search-container">
+                <div class="search-input-wrapper" style="position: relative; flex: 1">
+                  <i class="fas fa-search import-search-icon"></i>
+                  <input type="text" id="importSearchInput" class="import-search-input"
+                    placeholder="Search by ID or heading name..." style="padding-right: 70px" />
+
+                  <button id="clearSearchBtn" class="clear-search-btn" style="display: none; right: 40px">
+                    <i class="fas fa-times"></i>
+                  </button>
+
+                  <button id="importFilterBtn" class="search-filter-btn" title="Filter Options" style="
+                            position: absolute;
+                            right: 8px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          ">
+                    <i class="fas fa-filter"></i>
+                  </button>
+
+                  <div id="importFilterDialog" class="filter-dialog">
+                    <div class="filter-dialog-header">
+                      <h4 class="filter-dialog-title">Filters</h4>
+                      <button id="closeFilterDialogBtn" class="close-filter-btn">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <div class="filter-group">
+                      <label class="filter-label">Family</label>
+                      <select id="familyFilter" class="dialog-select">
+                        <option value="all">All Families</option>
+                      </select>
+                    </div>
+                    <div class="filter-group">
+                      <label class="filter-label">Status</label>
+                      <select id="importStatusFilter" class="dialog-select">
+                        <option value="all">All Status</option>
+                        <option value="ranked">Ranked</option>
+                        <option value="existing">Existing</option>
+                        <option value="additional">Additional</option>
+                      </select>
+                    </div>
+                    <div class="filter-actions" style="
+                              border-top: 1px solid #f1f5f9;
+                              padding-top: 8px;
+                              margin-top: 4px;
+                            ">
+                      <button id="clearImportFiltersBtn" class="filter-dialog-clear-btn">
+                        Clear Filters
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <button id="addSelectedToSupportedBtn" class="action-btn-small add-btn ml-2"
+                  title="Add Selected to Supported" style="margin-left: 8px">
+                  <i class="fas fa-plus"></i> Add
+                </button>
+              </div>
+
+              <div id="importedHeadingsList" class="imported-headings-list"></div>
+            </div>
+
+            <div class="production-section production-supported-headings">
+              <div class="production-section-header">
+                <h2 class="production-section-title">
+                  <i class="fas fa-star"></i>
+                  Supported Headings
+                </h2>
+                <div class="header-actions flex-center-gap" style="display: flex; gap: 6px; align-items: center">
+                  <span id="supportedCount" class="supported-count" style="margin-right: 8px">0 headings</span>
+
+                  <button id="removeSelectedSupportedBtn" class="remove-btn import-btn-small"
+                    title="Move Back to Import">
+                    <i class="fas fa-arrow-left"></i>
+                  </button>
+
+                  <button id="groupSelectedHeadingsBtn" class="import-history-btn" title="Group Selected">
+                    <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Supported Search Bar -->
+              <div class="import-search-container">
+                <div class="search-input-wrapper" style="position: relative; flex: 1">
+                  <i class="fas fa-search import-search-icon"></i>
+                  <input type="text" id="supportedSearchInput" class="import-search-input"
+                    placeholder="Search supported headings..." style="padding-right: 70px" />
+
+                  <button id="clearSupportedSearchBtn" class="clear-search-btn" style="display: none; right: 40px">
+                    <i class="fas fa-times"></i>
+                  </button>
+
+                  <button id="supportedFilterBtn" class="search-filter-btn" title="Filter Options" style="
+                            position: absolute;
+                            right: 8px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          ">
+                    <i class="fas fa-filter"></i>
+                  </button>
+
+                  <div id="supportedFilterDialog" class="filter-dialog">
+                    <div class="filter-dialog-header">
+                      <h4 class="filter-dialog-title">Filters</h4>
+                      <button id="closeSupportedFilterDialogBtn" class="close-filter-btn">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <div class="filter-group">
+                      <label class="filter-label">Family</label>
+                      <select id="supportedFamilyFilter" class="dialog-select">
+                        <option value="all">All Families</option>
+                      </select>
+                    </div>
+                    <div class="filter-group">
+                      <label class="filter-label">Supported Link</label>
+                      <select id="supportedLinkFilter" class="dialog-select">
+                        <option value="all">All Links</option>
+                      </select>
+                    </div>
+                    <div class="filter-actions" style="
+                              border-top: 1px solid #f1f5f9;
+                              padding-top: 8px;
+                              margin-top: 4px;
+                            ">
+                      <button id="clearSupportedFiltersBtn" class="filter-dialog-clear-btn">
+                        Clear Filters
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="supportedHeadingsList" class="supported-headings-list empty">
+                <p class="empty-placeholder">
+                  Click + button on headings from Import section to add
+                  them here
+                </p>
+              </div>
+            </div>
+
+            <div class="production-grouping-wrapper">
+              <div id="pdmBuilderContainer">
+                <div class="pdm-builder">
+                  <div class="pdm-builder-header">
+                    <label class="pdm-input-label">Headings *</label>
+                    <span id="pdmCounter" class="pdm-counter">0 / 8 headings</span>
+                  </div>
+
+                  <div id="pdmDropZone" class="drop-zone empty">
+                    <p class="empty-placeholder">
+                      Click + button on headings from Supported section to
+                      add them here (1-8 headings per PDM)
+                    </p>
+                  </div>
+
+                  <div class="pdm-details">
+                    <div class="pdm-input-group" id="pdmURLContainer">
+                      <label class="pdm-input-label">URL *</label>
+                      <input type="url" id="pdmURL" class="pdm-input" placeholder="Enter PDM URL" />
+                    </div>
+
+                    <div class="pdm-input-group">
+                      <label class="pdm-input-label">Company Type *</label>
+                      <div class="custom-multi-select" id="pdmCompanyTypeMultiSelect">
+                        <div class="multi-select-trigger" tabindex="0">
+                          <span class="multi-select-text placeholder">Select Company Type...</span>
+                          <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="multi-select-dropdown">
+                          <!-- Options injected via JS -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="pdm-input-group" id="pdmTypeOfProofContainer">
+                      <label class="pdm-input-label">Type of proof</label>
+                      <select id="pdmTypeOfProof" class="pdm-input">
+                        <option value="">Select Type of proof...</option>
+                        <option value="Supported by Xometry Content">
+                          Supported by Xometry Content
+                        </option>
+                        <option value="Supported by Profile Content">
+                          Supported by Profile Content
+                        </option>
+                        <option value="Supported by Website Content">
+                          Supported by Website Content
+                        </option>
+                        <option value="Supported by Rep Confirmation">
+                          Supported by Rep Confirmation
+                        </option>
+                        <option value="Supported by Inference">
+                          Supported by Inference
+                        </option>
+                        <option value="Secondary Services">
+                          Secondary Services
+                        </option>
+                        <option value="Unprocessed">Unprocessed</option>
+                        <option value="Unsupported">Unsupported</option>
+                        <option value="Self-Serve Unranked">
+                          Self-Serve Unranked
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="pdm-input-group">
+                      <label class="pdm-input-label">Description *</label>
+                      <textarea id="pdmDescription" class="pdm-input pdm-textarea"
+                        placeholder="Enter PDM description"></textarea>
+                    </div>
+
+                    <div class="pdm-input-group">
+                      <label class="pdm-input-label">Comments</label>
+                      <input type="text" id="pdmComment" class="pdm-input" placeholder="Add a comment (optional)" />
+                    </div>
+
+                    <div class="pdm-actions">
+                      <button id="savePDMBtn" class="save-pdm-btn" disabled>
+                        <i class="fas fa-save"></i> Save PDM
+                      </button>
+                      <button id="clearPDMBtn" class="clear-pdm-btn">
+                        <i class="fas fa-times"></i> Clear
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="productionPDMFullViewContainer" class="pdm-full-view-content" style="display: none"></div>
+            </div>
+
+            <div class="production-section production-pdm-library">
+              <div class="production-section-header">
+                <h2 class="production-section-title">
+                  <i class="fas fa-book"></i>
+                  PDM Library
+                </h2>
+                <span class="production-section-badge" id="productionPdmCount">0</span>
+                <button id="coProBtn" class="copro-btn">Add CoPro</button>
+              </div>
+              <div class="grouped-pdms-controls mb-10">
+                <div class="grouped-pdm-search-container" style="position: relative">
+                  <i class="fas fa-search grouped-pdm-search-icon"></i>
+                  <input type="text" id="productionPDMSearch" class="grouped-pdm-search-input"
+                    placeholder="Search PDMs..." />
+
+                  <button id="libraryFilterBtn" class="search-filter-btn" title="Filter Options" style="
+                            position: absolute;
+                            right: 8px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          ">
+                    <i class="fas fa-filter"></i>
+                  </button>
+
+                  <div id="libraryFilterDialog" class="filter-dialog">
+                    <div class="filter-dialog-header">
+                      <h4 class="filter-dialog-title">Filters</h4>
+                      <button id="closeLibraryFilterDialogBtn" class="close-filter-btn">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <div class="filter-group">
+                      <label class="filter-label">Family</label>
+                      <select id="productionPDMFamilyFilter" class="dialog-select">
+                        <option value="all">All Families</option>
+                      </select>
+                    </div>
+                    <div class="filter-actions" style="
+                              border-top: 1px solid #f1f5f9;
+                              padding-top: 8px;
+                              margin-top: 4px;
+                            ">
+                      <button id="clearLibraryFiltersBtn" class="filter-dialog-clear-btn">
+                        Clear Filters
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="productionPDMLibraryList" class="grouped-pdms-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="editor-tab-content" id="accountFilesTab">
+          <div class="account-files-container">
+            <!-- Column 1: Files -->
+            <div class="account-files-column account-files-files">
+              <div class="account-files-header">
+                <h3 class="account-files-title">
+                  <i class="fas fa-folder"></i>Uploaded Data Files
+                </h3>
+                <div class="files-count" style="
+                          font-size: 11px;
+                          color: #64748b;
+                          font-weight: 500;
+                        ">
+                  0 files
+                </div>
+              </div>
+              <div class="account-files-content">
+                <div class="import-search-container" style="align-items: center">
+                  <div class="search-input-wrapper" style="position: relative; flex: 1">
+                    <i class="fas fa-search import-search-icon"></i>
+                    <input type="text" id="accountFilesSearch" class="import-search-input" placeholder="Search files..."
+                      style="padding-right: 70px" />
+
+                    <button id="clearAccountFilesSearchBtn" class="clear-search-btn" style="display: none; right: 40px">
+                      <i class="fas fa-times"></i>
+                    </button>
+
+                    <button id="accountFilesFilterBtn" class="search-filter-btn" title="Filter Options" style="
+                              position: absolute;
+                              right: 8px;
+                              top: 50%;
+                              transform: translateY(-50%);
+                            ">
+                      <i class="fas fa-filter"></i>
+                    </button>
+
+                    <div id="accountFilesFilterDialog" class="filter-dialog">
+                      <div class="filter-dialog-header">
+                        <h4 class="filter-dialog-title">Filters</h4>
+                        <button id="closeAccountFilesFilterDialogBtn" class="close-filter-btn">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                      <div class="filter-group">
+                        <label class="filter-label">File Type</label>
+                        <select id="accountFilesTypeFilter" class="dialog-select">
+                          <option value="all">All Types</option>
+                          <option value="excel">Excel</option>
+                          <option value="pdf">PDF</option>
+                          <option value="image">Images</option>
+                          <option value="video">Videos</option>
+                        </select>
+                      </div>
+                      <div class="filter-actions" style="
+                                border-top: 1px solid #f1f5f9;
+                                padding-top: 8px;
+                                margin-top: 4px;
+                              ">
+                        <button id="clearAccountFilesFiltersBtn" class="filter-dialog-clear-btn">
+                          Clear Filters
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <input type="file" id="accountFilesInput" multiple
+                    accept=".xlsx,.xls,.csv,.pdf,.jpg,.jpeg,.png,.gif,.bmp,.svg,.webp,.mp4,.avi,.mov,.wmv,.flv,.mkv,.webm"
+                    style="display: none" />
+
+                  <button class="files-upload-btn action-btn-small" id="accountFilesUploadBtn" style="
+                            height: 36px;
+                            padding: 0 16px;
+                            margin-left: 8px;
+                          ">
+                    <i class="fas fa-file-upload"></i> Upload
+                  </button>
+                </div>
+                <div class="files-grid">
+                  <!-- File Items injected by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Notes -->
+            <div class="account-files-column account-files-notes">
+              <div class="account-files-header">
+                <h3 class="account-files-title">
+                  <i class="fas fa-sticky-note"></i> Notes
+                </h3>
+              </div>
+              <div class="account-files-content">
+                <div class="note-add-trigger" id="addNamedNoteBtn">
+                  <i class="fas fa-plus"></i> Create New Note
+                </div>
+                <div class="notes-list" id="namedNotesList">
+                  <!-- Notes injected by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 3: Comments -->
+            <div class="account-files-column account-files-comments">
+              <div class="account-files-header">
+                <h3 class="account-files-title">
+                  <i class="fas fa-bell"></i> Updates
+                </h3>
+              </div>
+              <div class="account-files-content">
+                <div class="comments-input-area">
+                  <div class="input-wrapper">
+                    <textarea id="accountCommentsInput" placeholder="Add an update..."></textarea>
+                    <div class="input-actions">
+                      <button class="send-comment-btn" id="accountCommentsSendBtn">
+                        Post Update
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="comments-list" id="accountCommentsList">
+                  <!-- Comments injected by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="editor-tab-content" id="productionReportTab">
+          <div class="workspace-production-report-container">
+            <!-- Menu Bar -->
+            <div class="qc-report-menu">
+              <button class="qc-menu-btn" id="prodRepFamilyTab">
+                <i class="fas fa-sitemap"></i> Family Wise Details
+              </button>
+              <button class="qc-menu-btn" id="prodRepErrorsTab">
+                <i class="fas fa-exclamation-triangle"></i> Production
+                Errors
+              </button>
+              <button class="qc-menu-btn" id="prodRepExistingTab">
+                <i class="fas fa-list"></i> Existing Classification
+              </button>
+            </div>
+
+            <!-- Content Sections (only one visible at a time) -->
+            <div class="qc-report-content">
+              <div id="productionReportFamilyContent" class="qc-report-view production-report-familywise-content">
+              </div>
+              <div id="productionReportProducedErrors" class="qc-report-view production-report-summary-content">
+              </div>
+              <div id="productionReportExistingContent" class="qc-report-view production-report-existing-content">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="qcModeContainer" class="mode-container">
+      <div class="qc-mode-section">
+        <div class="qc-mode-section-header">
+          <div class="qc-mode-tabs">
+            <span class="section-header-label">QC Workspace</span>
+            <span class="section-header-separator">|</span>
+            <button class="qc-tab-btn active" data-tab="qc-review">
+              <i class="fas fa-clipboard-check"></i>
+              QC Review
+            </button>
+
+            <button class="qc-tab-btn" data-tab="qc-report">
+              <i class="fas fa-file-alt"></i>
+              QC Report
+            </button>
+            <button class="qc-tab-btn" data-tab="account-files">
+              <i class="fas fa-folder"></i>
+              Account Data
+            </button>
+          </div>
+
+          <div class="header-right-actions">
+            <!-- Change Logs Section (QC Mode) -->
+            <span id="qcSelectedAccount" class="selected-account-name" style="font-weight: 500; margin-right: 12px">No
+              Account Selected</span>
+            <div class="change-logs-section">
+              <div id="qcChangeLogsContainer" class="change-logs-container flex-center-gap text-ellipsis">
+                <i class="fas fa-history font-size-12"></i>
+                <span class="change-logs-text">Change Logs</span>
+              </div>
+            </div>
+
+            <div class="qc-header-actions-wrapper" id="qcHeaderActionsWrapper"></div>
+          </div>
+        </div>
+
+        <div class="qc-tab-content active" id="qcReviewTab">
+          <div class="qc-review-container">
+            <div class="qc-pdms-list-section">
+              <div class="qc-section-header">
+                <h2 class="qc-section-title">QC PDMs</h2>
+                <span class="qc-section-badge" id="qcPdmCount">0</span>
+              </div>
+
+              <div class="grouped-pdms-controls mb-10">
+                <div class="grouped-pdm-search-container" style="position: relative">
+                  <i class="fas fa-search grouped-pdm-search-icon"></i>
+                  <input type="text" id="qcPdmSearch" class="grouped-pdm-search-input" placeholder="Search PDMs..." />
+
+                  <button id="qcLibraryFilterBtn" class="search-filter-btn" title="Filter Options" style="
+                            position: absolute;
+                            right: 8px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          ">
+                    <i class="fas fa-filter"></i>
+                  </button>
+
+                  <div id="qcLibraryFilterDialog" class="filter-dialog">
+                    <div class="filter-dialog-header">
+                      <h4 class="filter-dialog-title">Filters</h4>
+                      <button id="closeQcLibraryFilterDialogBtn" class="close-filter-btn">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <div class="filter-group">
+                      <label class="filter-label">Family</label>
+                      <select id="qcPdmFamilyFilter" class="dialog-select">
+                        <option value="all">All Families</option>
+                      </select>
+                    </div>
+                    <div class="filter-actions" style="
+                              border-top: 1px solid #f1f5f9;
+                              padding-top: 8px;
+                              margin-top: 4px;
+                            ">
+                      <button id="clearQcLibraryFiltersBtn" class="filter-dialog-clear-btn">
+                        Clear Filters
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="qcPdmsList" class="qc-pdms-list"></div>
+            </div>
+
+            <div class="qc-validation-wrapper">
+              <!-- View Mode -->
+              <div id="qcReviewViewMode" class="qc-view-container">
+                <div id="qcPdmViewContent" class="qc-pdm-container">
+                  <!-- PDM View Injected Here -->
+                </div>
+              </div>
+
+              <!-- Edit Mode -->
+              <div id="qcReviewEditMode" class="qc-edit-container" style="display: none">
+                <div class="qc-pdm-builder qc-edit-builder">
+                  <div class="qc-pdm-builder-header">
+                    <label class="qc-pdm-input-label">Edit PDM Content</label>
+                    <span id="qcEditPdmCounter" class="qc-pdm-counter">0 / 8 headings</span>
+                  </div>
+
+                  <div id="qcEditPdmHeadingsList" class="drop-zone qc-edit-headings-list">
+                    <!-- Headings injected here -->
+                  </div>
+
+                  <div class="qc-pdm-details">
+                    <div class="qc-pdm-input-group">
+                      <label class="qc-pdm-input-label">URL *</label>
+                      <input type="url" id="qcEditPdmURL" class="qc-pdm-input" placeholder="Enter PDM URL" />
+                    </div>
+
+                    <div class="qc-pdm-input-group">
+                      <label class="qc-pdm-input-label">Company Type *</label>
+                      <div class="custom-multi-select" id="qcEditPdmCompanyTypeMultiSelect">
+                        <div class="multi-select-trigger" tabindex="0">
+                          <span class="multi-select-text placeholder">Select Company Type...</span>
+                          <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="multi-select-dropdown">
+                          <!-- Options injected via JS -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="qc-pdm-input-group">
+                      <label class="qc-pdm-input-label">Type of proof</label>
+                      <select id="qcEditPdmTypeOfProof" class="qc-pdm-input">
+                        <option value="">Select Type of proof...</option>
+                        <option value="Supported by Xometry Content">
+                          Supported by Xometry Content
+                        </option>
+                        <option value="Supported by Profile Content">
+                          Supported by Profile Content
+                        </option>
+                        <option value="Supported by Website Content">
+                          Supported by Website Content
+                        </option>
+                        <option value="Supported by Rep Confirmation">
+                          Supported by Rep Confirmation
+                        </option>
+                        <option value="Supported by Inference">
+                          Supported by Inference
+                        </option>
+                        <option value="Secondary Services">
+                          Secondary Services
+                        </option>
+                        <option value="Unprocessed">Unprocessed</option>
+                        <option value="Unsupported">Unsupported</option>
+                        <option value="Self-Serve Unranked">
+                          Self-Serve Unranked
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="qc-pdm-input-group">
+                      <label class="qc-pdm-input-label">Description *</label>
+                      <textarea id="qcEditPdmDescription" class="qc-pdm-input qc-pdm-textarea"
+                        placeholder="Enter PDM description"></textarea>
+                    </div>
+
+                    <div class="qc-pdm-input-group">
+                      <label class="qc-pdm-input-label">Comments</label>
+                      <input type="text" id="qcEditPdmComment" class="qc-pdm-input"
+                        placeholder="Add a comment (optional)" />
+                    </div>
+
+                    <div class="qc-pdm-actions">
+                      <button id="qcSaveEditBtn" class="qc-save-pdm-btn">
+                        <i class="fas fa-save"></i> Save Changes
+                      </button>
+                      <button id="qcCancelEditBtn" class="qc-cancel-pdm-btn">
+                        <i class="fas fa-times"></i> Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="qc-headings-section">
+              <div class="qc-section-header">
+                <h2 class="qc-section-title">Headings</h2>
+                <div style="display: flex; gap: 8px">
+                  <button id="addQcHeadingsToBuilderBtn" class="qc-header-action-btn add-btn"
+                    title="Add Selected to PDM">
+                    <i class="fas fa-plus"></i> Add
+                  </button>
+                  <button id="missedQcHeadingsBtn" class="qc-header-action-btn missed-btn" title="Mark as Missed">
+                    <i class="fas fa-exclamation-circle"></i> Missed
+                  </button>
+                </div>
+              </div>
+
+              <div class="import-search-container">
+                <div class="search-input-wrapper" style="position: relative; flex: 1">
+                  <i class="fas fa-search import-search-icon"></i>
+                  <input type="text" id="qcHeadingsSearchInput" class="import-search-input"
+                    placeholder="Search by ID or heading name..." style="padding-right: 70px" />
+
+                  <button id="clearQcHeadingsSearchBtn" class="clear-search-btn" style="display: none; right: 40px">
+                    <i class="fas fa-times"></i>
+                  </button>
+
+                  <button id="qcHeadingsFilterBtn" class="search-filter-btn" title="Filter Options" style="
+                            position: absolute;
+                            right: 8px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          ">
+                    <i class="fas fa-filter"></i>
+                  </button>
+
+                  <div id="qcHeadingsFilterDialog" class="filter-dialog">
+                    <div class="filter-dialog-header">
+                      <h4 class="filter-dialog-title">Filters</h4>
+                      <button id="closeQcHeadingsFilterDialogBtn" class="close-filter-btn">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <div class="filter-group">
+                      <label class="filter-label">Family</label>
+                      <select id="qcHeadingsFamilyFilter" class="dialog-select">
+                        <option value="all">All Families</option>
+                      </select>
+                    </div>
+                    <div class="filter-group">
+                      <label class="filter-label">Status</label>
+                      <select id="qcHeadingsStatusFilter" class="dialog-select">
+                        <option value="all">All Status</option>
+                        <option value="worked">Worked</option>
+                        <option value="unworked">Unworked</option>
+                        <option value="ranked">Ranked</option>
+                        <option value="existing">Existing</option>
+                        <option value="additional">Additional</option>
+                      </select>
+                    </div>
+                    <div class="filter-actions" style="
+                              border-top: 1px solid #f1f5f9;
+                              padding-top: 8px;
+                              margin-top: 4px;
+                            ">
+                      <button id="clearQcHeadingsFiltersBtn" class="filter-dialog-clear-btn">
+                        Clear Filters
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="qc-headings-content" id="qcHeadingsContent">
+                <div class="qc-empty-state">
+                  <p>Select a PDM to view headings</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="qc-defective-pdms-section">
+              <div class="qc-section-header">
+                <h2 class="qc-section-title">Defective PDMs</h2>
+                <span class="qc-section-badge" id="qcDefectivePdmCount">0</span>
+              </div>
+              <div class="qc-defective-pdms-content" id="qcDefectivePdmsContent">
+                <div class="qc-empty-state">
+                  <p>No defective PDMs found</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qc-tab-content" id="qcReportTab">
+          <div class="workspace-qc-report-container">
+            <!-- Menu Bar -->
+            <div class="qc-report-menu">
+              <button class="qc-menu-btn active" id="menuSummary">
+                <i class="fas fa-chart-pie"></i> Summary
+              </button>
+              <button class="qc-menu-btn" id="menuProductionErrors">
+                <i class="fas fa-exclamation-triangle"></i> Production
+                Errors
+              </button>
+              <button class="qc-menu-btn" id="menuFamilyWise">
+                <i class="fas fa-sitemap"></i> Family Wise Details
+              </button>
+              <button class="qc-menu-btn" id="menuExisting">
+                <i class="fas fa-list"></i> Existing Classification
+              </button>
+            </div>
+
+            <!-- Content Sections (only one visible at a time) -->
+            <div class="qc-report-content">
+              <div id="qcSummarySection" class="qc-report-view active"></div>
+              <div id="qcFamilyWiseSection" class="qc-report-view"></div>
+              <div id="qcExistingSection" class="qc-report-view"></div>
+              <div id="qcProductionErrorsSection" class="qc-report-view"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qc-tab-content" id="qcAccountFilesTab">
+          <div class="account-files-container">
+            <!-- Column 1: Files -->
+            <div class="account-files-column account-files-files">
+              <div class="account-files-header">
+                <h3 class="account-files-title">
+                  <i class="fas fa-folder"></i>Uploaded Data Files
+                </h3>
+                <div class="files-count" style="
+                          font-size: 11px;
+                          color: #64748b;
+                          font-weight: 500;
+                        ">
+                  0 files
+                </div>
+              </div>
+              <div class="account-files-content">
+                <div class="import-search-container" style="align-items: center">
+                  <div class="search-input-wrapper" style="position: relative; flex: 1">
+                    <i class="fas fa-search import-search-icon"></i>
+                    <input type="text" id="qc-accountFilesSearch" class="import-search-input"
+                      placeholder="Search files..." style="padding-right: 70px" />
+
+                    <button id="qc-clearAccountFilesSearchBtn" class="clear-search-btn"
+                      style="display: none; right: 40px">
+                      <i class="fas fa-times"></i>
+                    </button>
+
+                    <button id="qc-accountFilesFilterBtn" class="search-filter-btn" title="Filter Options" style="
+                              position: absolute;
+                              right: 8px;
+                              top: 50%;
+                              transform: translateY(-50%);
+                            ">
+                      <i class="fas fa-filter"></i>
+                    </button>
+
+                    <div id="qc-accountFilesFilterDialog" class="filter-dialog">
+                      <div class="filter-dialog-header">
+                        <h4 class="filter-dialog-title">Filters</h4>
+                        <button id="closeQcAccountFilesFilterDialogBtn" class="close-filter-btn">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                      <div class="filter-group">
+                        <label class="filter-label">File Type</label>
+                        <select id="qc-accountFilesTypeFilter" class="dialog-select">
+                          <option value="all">All Types</option>
+                          <option value="excel">Excel</option>
+                          <option value="pdf">PDF</option>
+                          <option value="image">Images</option>
+                          <option value="video">Videos</option>
+                        </select>
+                      </div>
+                      <div class="filter-actions" style="
+                                border-top: 1px solid #f1f5f9;
+                                padding-top: 8px;
+                                margin-top: 4px;
+                              ">
+                        <button id="qc-clearAccountFilesFiltersBtn" class="filter-dialog-clear-btn">
+                          Clear Filters
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <input type="file" id="qc-accountFilesInput" multiple
+                    accept=".xlsx,.xls,.csv,.pdf,.jpg,.jpeg,.png,.gif,.bmp,.svg,.webp,.mp4,.avi,.mov,.wmv,.flv,.mkv,.webm"
+                    style="display: none" />
+
+                  <button class="files-upload-btn action-btn-small" id="qc-accountFilesUploadBtn" style="
+                            height: 36px;
+                            padding: 0 16px;
+                            margin-left: 8px;
+                          ">
+                    <i class="fas fa-file-upload"></i> Upload
+                  </button>
+                </div>
+                <div class="files-grid">
+                  <!-- File Items injected by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Notes -->
+            <div class="account-files-column account-files-notes">
+              <div class="account-files-header">
+                <h3 class="account-files-title">
+                  <i class="fas fa-sticky-note"></i> Notes
+                </h3>
+              </div>
+              <div class="account-files-content">
+                <div class="note-add-trigger" id="qc-addNamedNoteBtn">
+                  <i class="fas fa-plus"></i> Create New Note
+                </div>
+                <div class="notes-list" id="qc-namedNotesList">
+                  <!-- Notes injected by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 3: Comments -->
+            <div class="account-files-column account-files-comments">
+              <div class="account-files-header">
+                <h3 class="account-files-title">
+                  <i class="fas fa-bell"></i> Updates
+                </h3>
+              </div>
+              <div class="account-files-content">
+                <div class="comments-input-area">
+                  <div class="input-wrapper">
+                    <textarea id="qc-accountCommentsInput" placeholder="Add an update..."></textarea>
+                    <div class="input-actions">
+                      <button class="send-comment-btn" id="qc-accountCommentsSendBtn">
+                        Post Update
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="comments-list" id="qc-accountCommentsList">
+                  <!-- Comments injected by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="scroll-to-top-icon" title="Scroll to Top">
+      <i class="fas fa-chevron-up"></i>
+    </span>
+  </div>
+
+  <div class="qc-modal-overlay" id="qcFeedbackModal">
+    <div class="qc-modal-content">
+      <div class="qc-modal-header">
+        <h3 class="qc-modal-title">QC Feedback / Error Reporting</h3>
+        <div class="qc-modal-actions" style="display: flex; gap: 8px">
+          <button id="qcFeedbackSubmitBtn" class="qc-validation-btn qc-btn-feedback">
+            Submit
+          </button>
+          <button id="qcFeedbackCloseBtn" class="qc-modal-close-text">
+            Close
+          </button>
+        </div>
+      </div>
+      <div class="qc-modal-body">
+        <div class="qc-feedback-container">
+          <!-- Left Column: Content & Description -->
+          <div class="qc-feedback-left-col">
+            <!-- Read-only Editor Description -->
+            <div class="qc-input-group">
+              <label class="qc-input-label">Editor Description</label>
+              <div id="qcEditorDescriptionDisplay" class="qc-content-display">
+                <!-- Injected by JS -->
+              </div>
+            </div>
+
+            <!-- Updated QC Description -->
+            <div class="qc-input-group">
+              <label class="qc-input-label">Updated QC Description</label>
+              <textarea id="qcFeedbackDescription" class="qc-textarea"
+                placeholder="Enter corrected description..."></textarea>
+            </div>
+
+            <!-- Additional Comments -->
+            <div class="qc-input-group">
+              <label class="qc-input-label">QC Comments</label>
+              <textarea id="qcFeedbackComment" class="qc-textarea" placeholder="Add specific instructions or remarks..."
+                style="height: 80px"></textarea>
+            </div>
+          </div>
+
+          <!-- Right Column: Error Selection -->
+          <div class="qc-feedback-right-col">
+            <div class="qc-input-group">
+              <label class="qc-input-label">Select Errors</label>
+              <div class="qc-error-search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="qcErrorSearchInput" placeholder="Search errors..." />
+              </div>
+            </div>
+            <div class="qc-error-selection-wrapper">
+              <div class="qc-error-list-container" id="qcErrorListContainer">
+                <!-- Error Options injected here -->
+              </div>
+            </div>
+            <div class="qc-selected-errors-summary" id="qcSelectedErrorsContainer">
+              <!-- Selected tags -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- History Modal (Right Sidebar) -->
+  <div id="historyModalOverlay" class="history-modal-overlay">
+    <div id="historyModal" class="history-modal">
+      <div class="history-modal-header">
+        <h2 class="history-modal-title">
+          <i class="fas fa-history"></i> Change Logs
+        </h2>
+        <button id="historyModalCloseBtn" class="history-modal-close-btn">
+          Close <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="history-modal-body">
+        <p style="
+                color: #94a3b8;
+                font-style: italic;
+                text-align: center;
+                margin-top: 40px;
+              ">
+          No change history available.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workspace Settings Modal (Account & Mode Selection) -->
+  <div id="workspaceSettingsModalOverlay" class="workspace-settings-modal-overlay" style="display: none">
+    <div class="workspace-settings-modal">
+      <div class="workspace-settings-modal-header">
+        <h2 class="workspace-settings-modal-title">Workspace Settings</h2>
+
+        <div class="header-right-group" style="display: flex; align-items: center; gap: 12px">
+          <!-- Mode Selection -->
+          <div class="header-mode-selector">
+            <div class="header-mode-option" data-mode="editor"
+              title="Switch to Editor Mode">
+              <span>Editor Mode</span>
+            </div>
+            <div class="header-mode-option" data-mode="qc"
+              title="Switch to QC Mode">
+              <span>QC Mode</span>
+            </div>
+          </div>
+
+          <div style="width: 1px; height: 24px; background-color: #e2e8f0"></div>
+
+          <button id="workspaceSettingsCloseBtn" class="workspace-settings-modal-close-btn text-btn">
+            Close
+          </button>
+        </div>
+      </div>
+      <div class="workspace-settings-modal-body">
+        <!-- Account Selection (Only Content in Body) -->
+        <div class="workspace-settings-section" style="margin-bottom: 0">
+          <!-- <div class="context-section-title">Active Account</div> -->
+          <div class="workspace-settings-account-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="workspaceSettingsAccountSearch" placeholder="Search accounts..." />
+          </div>
+          <div class="workspace-settings-account-list" id="workspaceSettingsAccountList">
+            <!-- Account Items Injected Here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,744 @@
+h1 {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 15px;
+    color: #333;
+    margin: 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: 14px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+}
+
+/* Unified Table Header Styles */
+th,
+table thead th {
+    background-color: #ececec;
+    font-weight: 600;
+    text-align: left;
+    font-size: 14px;
+    color: #222;
+    letter-spacing: 0.5px;
+    height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 12px 14px;
+    border: 1px solid #e0e0e0;
+}
+
+
+/* Unified Table Cell Styles */
+table tbody td,
+#classificationDetailsTable td,
+.saved-data-table table tbody td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 14px 10px;
+    text-align: left;
+    height: 38px;
+    line-height: normal;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    color: #0d121a;
+}
+
+/* Saved Data Tables - No Wrap Override */
+.saved-data-table table tbody td {
+    white-space: nowrap;
+}
+
+/* Row Hover Effect */
+tr:hover td {
+    background-color: #f1f5f9;
+    cursor: cell;
+}
+
+/* Alternate Row Styling */
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Last Row Border */
+table tbody tr:last-child td {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* All table columns - Minimum 100px, expand with screen size */
+table th,
+table td,
+#dataTable th,
+#dataTable td,
+#pulldataBackupTable th,
+#pulldataBackupTable td,
+#classificationDetailsTable th,
+#classificationDetailsTable td,
+.saved-data-table table th,
+.saved-data-table table td {
+    min-width: 100px;
+    width: auto;
+    max-width: none;
+}
+
+#classificationDetailsTable th:nth-child(1),
+#classificationDetailsTable td:nth-child(1),
+#classificationDetailsTable th:nth-child(5),
+#classificationDetailsTable td:nth-child(5),
+#classificationDetailsTable th:nth-child(9),
+#classificationDetailsTable td:nth-child(9),
+#classificationDetailsTable th:nth-child(11),
+#classificationDetailsTable td:nth-child(11) {
+    max-width: 120px;
+    text-align: center;
+}
+
+/* Specific wider columns for better readability */
+#dataTable th:nth-child(1),
+#dataTable td:nth-child(1),
+#pulldataBackupTable th:nth-child(1),
+#pulldataBackupTable td:nth-child(1),
+#classificationDetailsTable th:nth-child(2),
+#classificationDetailsTable td:nth-child(2),
+#classificationDetailsTable th:nth-child(7),
+#classificationDetailsTable td:nth-child(7),
+.saved-data-table #dataTable th:nth-child(1),
+.saved-data-table #dataTable td:nth-child(1),
+.saved-data-table #pulldataBackupTable th:nth-child(1),
+.saved-data-table #pulldataBackupTable td:nth-child(1) {
+    min-width: 150px;
+}
+
+/* Extra wide columns for descriptions and PDM text */
+.saved-data-table #dataTablePDM th:nth-child(3),
+.saved-data-table #dataTablePDM td:nth-child(3),
+#classificationDetailsTable th:nth-child(10),
+#classificationDetailsTable td:nth-child(10) {
+    min-width: 200px;
+}
+
+#classificationDetailsTable {
+    table-layout: fixed;
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Classification Details Input Field */
+#classificationDetailsTable td:nth-child(5) input[type="text"] {
+    width: 100%;
+    min-width: 100px;
+    height: 100%;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    background: transparent;
+    transition: background-color 0.2s ease;
+    color: #0d121a;
+    white-space: nowrap;
+}
+
+#classificationDetailsTable td:nth-child(5) input[type="text"]:focus {
+    outline: 2px solid #5d8ad1;
+    background-color: #f8fafc;
+    z-index: 1;
+}
+
+.saved-data-table table {
+    table-layout: fixed;
+    width: 100%;
+    border-radius: 8px;
+}
+
+
+.table-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 18px;
+    background-color: #f7f7f7;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.scraper-section {
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 22px;
+    padding: 22px;
+    overflow: hidden;
+}
+
+.classification-details-section {
+    margin-bottom: 22px;
+}
+
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 18px 12px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+    flex-wrap: wrap;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 0 18px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    flex-shrink: 0;
+}
+
+
+.saved-data-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.tab-btn:hover {
+    color: #212529;
+    border-bottom-color: #adb5bd;
+}
+
+.tab-btn.active {
+    color: #008080;
+    border-bottom-color: #008080;
+    font-weight: 600;
+}
+
+.saved-data-table {
+    display: none;
+}
+
+.saved-data-table.has-data {
+    display: block;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+#savedDataSection {
+    margin-top: 10px;
+}
+
+.qc-import-upload-wrapper {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 7px 14px 14px 14px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.qc-import-upload-wrapper h2 {
+    font-size: 14px;
+    color: #2C333A;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+
+.upload-section {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+
+.upload-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.upload-item {
+    position: relative;
+    min-width: 0;
+    /* CRITICAL: Allows grid item to shrink below content size prevents overflow */
+}
+
+/* --- SCOPED UPLOAD STYLES START HERE (UPDATED) --- */
+#importSection .upload-item input[type="file"] {
+    display: none;
+}
+
+#importSection .upload-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 16px;
+    background: #ffffff;
+    border: 1px dashed #ced4da;
+    /* Subtler gray for default state */
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    min-height: 60px;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#importSection .upload-label:hover {
+    border-color: #4a90e2;
+    background-color: #f8fbff;
+}
+
+
+#importSection .upload-label.has-file {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    /* Light gray border for 3 sides */
+    /* border-left removed as requested */
+    cursor: default;
+    transform: none;
+    /* Clean flat look, no shadows */
+}
+
+#importSection .upload-label.has-file:hover {
+    background: #fcfcfc;
+    /* Very subtle hover change */
+    border-color: #d0d0d0;
+    /* Slightly darker gray border on hover */
+}
+
+#importSection .upload-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    color: #94a3b8;
+    background-color: #f1f5f9;
+}
+
+/* Only apply hover effect when NO file is present */
+#importSection .upload-label:not(.has-file):hover .upload-icon {
+    color: #3b82f6;
+    background-color: #e0f2fe;
+}
+
+
+/* Excel Style (for fa-file-excel) */
+#importSection .upload-icon.fa-file-excel {
+    background: #d1fae5;
+    color: #059669;
+    font-size: 22px;
+}
+
+#importSection .upload-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
+}
+
+#importSection .upload-text {
+    font-size: 14px;
+    /* Default size */
+    color: #2C333A;
+    /* Default color */
+    font-weight: 500;
+    text-align: left;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    /* Reverted Font */
+    line-height: 1.4;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+#importSection .upload-label.has-file .upload-text {
+    color: #000;
+    /* Darker for readability */
+    font-weight: 600;
+}
+
+#importSection .upload-subtext {
+    font-size: 13px;
+    /* Default size */
+    color: #6b7280;
+    margin-top: 2px;
+    text-align: left;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    /* Reverted Font */
+    display: block;
+}
+
+#importSection .upload-label.has-file .upload-subtext {
+    color: #10b981;
+    /* Green status text */
+    font-weight: 500;
+}
+
+/* --- DELETE ICON STYLES (UPDATED) --- */
+#importSection .delete-file-container {
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+#importSection .upload-label.has-file .delete-file-container {
+    display: flex;
+}
+
+#importSection .delete-file-icon {
+    font-size: 16px;
+    color: #ef4444;
+    /* Red color */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+#importSection .delete-file-icon:hover {
+    color: #dc2626;
+    background-color: #fee2e2;
+    /* Light red background on hover */
+}
+
+/* --- UPLOAD ANIMATION --- */
+#importSection .upload-animation-container {
+    display: none;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+}
+
+#importSection .upload-label.animating .upload-icon {
+    display: none;
+}
+
+#importSection .upload-label.animating .upload-animation-container {
+    display: flex;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #10b981;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #10b981;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #10b981;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+
+    0%,
+    100% {
+        transform: none;
+    }
+
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #e0f2f1;
+    }
+}
+
+/* --- DRAG AND DROP --- */
+#importSection .upload-label.drag-over {
+    border-color: #4a90e2;
+    border-style: dashed;
+    background-color: #e8f4fd;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+#importSection .upload-label.drag-over .upload-icon {
+    color: #3b82f6;
+    background-color: #dbeafe;
+}
+
+/* --- SCOPED UPLOAD STYLES END HERE --- */
+
+/* Modern Clean Button Styling */
+.clear-btn,
+.sync-btn {
+    padding: 7px 15px;
+    height: auto;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
+}
+
+.clear-btn {
+    background-color: #dc3545;
+    color: #ffffff;
+    border-color: transparent;
+}
+
+.clear-btn:hover {
+    background-color: #c82333;
+    color: #ffffff;
+}
+
+.clear-btn:active {
+    background-color: #bd2130;
+}
+
+.sync-btn {
+    background-color: #008080;
+    color: #ffffff;
+}
+
+.sync-btn:hover {
+    background-color: #006666;
+}
+
+.sync-btn:active {
+    background-color: #004d4d;
+}
+
+.sync-btn.loading {
+    cursor: wait;
+    opacity: 1;
+    pointer-events: none;
+    animation: syncBtnPulse 1.2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(0, 128, 128, 0.3);
+}
+
+.sync-btn.loading i {
+    animation: syncBtnSpin 0.9s linear infinite;
+}
+
+@keyframes syncBtnSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes syncBtnPulse {
+    0% {
+        filter: brightness(1);
+        box-shadow: 0 0 0 0 rgba(0, 128, 128, 0.3);
+    }
+
+    50% {
+        filter: brightness(1.08);
+        box-shadow: 0 0 0 6px rgba(0, 128, 128, 0);
+    }
+
+    100% {
+        filter: brightness(1);
+        box-shadow: 0 0 0 0 rgba(0, 128, 128, 0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .upload-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .upload-container {
+        grid-template-columns: 1fr;
+    }
+
+    #importSection .upload-label {
+        /* Scoped for mobile too */
+        min-height: 100px;
+        padding: 20px 16px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header-right {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .section-header h2 {
+        margin: 0;
+    }
+
+    .saved-data-tabs {
+        margin-top: 8px;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .tab-btn {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
+    .clear-btn,
+    .sync-btn {
+        font-size: 11px;
+        padding: 5px 10px;
+        height: auto;
+    }
+
+}
+
+.header-tabs {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.active-header {
+    cursor: default;
+    color: #333;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.inactive-header {
+    cursor: pointer;
+    color: #94a3b8;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding-bottom: 2px;
+}
+
+.inactive-header:hover {
+    color: #475569;
+}
+
+.header-separator {
+    font-size: 20px;
+    color: #cbd5e1;
+    font-weight: 300;
+    margin-top: -3px;
+    /* visual alignment */
+}
+
+/* Ensure buttons in header-right have spacing */
+.header-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Ensure generate-btn (sync-btn) looks good in header */
+.header-right .sync-btn {
+    margin: 0;
+}

@@ -1,0 +1,268 @@
+/* User Profile Page Styles - Redesigned */
+
+#userProfilePage {
+    width: 100%;
+}
+
+/* Dashboard Section Style Match */
+.user-profile-section {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 16px;
+    border: 1px solid #ddd;
+}
+
+.user-profile-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 16px;
+}
+
+.user-profile-section-header h2 {
+    font-size: 16px;
+    color: #2C333A;
+    margin-left: 5px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+.user-profile-body {
+    padding: 16px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+}
+
+.profile-details-group,
+.profile-stats-group {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-group-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    margin: 0 0 15px 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Personal Info Grid - Clean Card Design */
+.profile-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 350px;
+}
+
+.profile-info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.profile-info-item:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.profile-info-item i {
+    font-size: 16px;
+    color: #4a90e2;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.profile-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-label {
+    font-size: 10px;
+    color: #64748b;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.profile-value {
+    font-size: 13px;
+    color: #1e293b;
+    font-weight: 500;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Divider - Vertical Line Between Sections */
+.profile-divider {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #e2e8f0 10%, #e2e8f0 90%, transparent);
+    align-self: stretch;
+    margin: 0 4px;
+}
+
+/* Performance Stats Grid - Modern Card Design */
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    align-content: start;
+    max-width: 520px;
+}
+
+.profile-stat-box {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 14px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.profile-stat-box:hover {
+    border-color: #4a90e2;
+
+}
+
+.profile-stat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+
+    letter-spacing: 0.3px;
+}
+
+.profile-stat-header i {
+    font-size: 14px;
+    color: #4a90e2;
+}
+
+.profile-stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    line-height: 1;
+}
+
+/* Team Information Section */
+.profile-team-group {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.profile-team-placeholder {
+    padding: 20px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.profile-team-placeholder p {
+    margin: 0;
+}
+
+/* Header Logout Button */
+.logout-btn-header {
+    padding: 6px 14px;
+    background-color: #fee2e2;
+    color: #ef4444;
+    border: 1px solid #fca5a5;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.logout-btn-header:hover {
+    background-color: #fecaca;
+    border-color: #f87171;
+}
+
+.logout-btn-header i {
+    font-size: 12px;
+}
+
+.logout-btn-header.is-logging-out {
+    opacity: 0.8;
+    cursor: wait;
+    pointer-events: none;
+}
+
+.logout-btn-header.is-logging-out:hover {
+    background-color: #fee2e2;
+    border-color: #fca5a5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .user-profile-body {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .profile-info-grid {
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .profile-stats-grid {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-profile-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .logout-btn-header {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

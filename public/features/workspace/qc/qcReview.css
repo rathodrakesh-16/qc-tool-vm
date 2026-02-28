@@ -1,0 +1,757 @@
+/* QC Section Container - REFACTORED TO FLEX */
+
+
+/* Reuse the same file */
+.qc-review-container {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding: 16px 0 16px 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Column 1: QC PDMs List (30%) */
+.qc-pdms-list-section {
+    flex: 20;
+    max-width: 320px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+    box-sizing: border-box;
+    height: auto;
+}
+
+.qc-pdms-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+
+
+.qc-pdm-family-filter {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    background-color: #fff;
+    color: #2C333A;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    min-width: 140px;
+}
+
+.qc-pdm-family-filter:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: #fff;
+}
+
+.qc-pdm-family-filter:hover {
+    border-color: #9ca3af;
+}
+
+/* QC PDMs List */
+.qc-pdms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    padding-right: 4px;
+    min-height: 0;
+}
+
+/* PDM Card Styles moved to pdmUtils.css */
+
+.qc-pdm-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.qc-pdm-stats-container {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 9px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+}
+
+.qc-pdm-stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 2px 0;
+}
+
+.qc-pdm-stat-label {
+    font-size: 14px;
+    color: #515861;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+}
+
+.qc-pdm-stat-value {
+    font-size: 14px;
+    color: #000000;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 530;
+    text-align: right;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+}
+
+/* Column 2: QC Validation Section - Unified Section */
+/* Column 2: QC Validation Wrapper (replaces Section) */
+.qc-validation-wrapper {
+    flex: 30;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-width: 500px;
+    min-width: 350px;
+    min-height: 0;
+}
+
+.qc-view-container,
+.qc-edit-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* Column 3: QC Headings Section */
+
+.qc-headings-section {
+    flex: 30;
+    min-width: 300px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    min-height: 0;
+    box-sizing: border-box;
+    height: auto;
+    align-items: stretch;
+    max-width: 400px;
+}
+
+/* Column 4: QC Defective PDMs Section */
+
+.qc-defective-pdms-section {
+    flex: 20;
+    min-width: 250px;
+    max-width: 320px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+    box-sizing: border-box;
+    height: auto;
+    align-items: stretch;
+}
+
+.qc-defective-pdms-content {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Specific Header Layout for Headings Section to accommodate filters */
+/* Specific Header Layout for Headings Section */
+/* Removed specific flex-direction column override to match standard row layout */
+
+.qc-headings-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+#qcHeadingsFamilyFilter {
+    flex: 6;
+    min-width: 0;
+}
+
+#qcHeadingsStatusFilter {
+    flex: 4;
+    min-width: 0;
+}
+
+.qc-headings-content {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.qc-heading-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    gap: 12px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.qc-heading-item.selected {
+    background-color: #e0f2fe;
+    border-color: #7dd3fc;
+}
+
+.qc-heading-item:hover {
+    border-color: #cbd5e1;
+}
+
+.qc-heading-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Heading Name Styles moved to pdmUtils.css */
+
+
+
+/* QC Section Header */
+.qc-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+    flex-shrink: 0;
+}
+
+.qc-section-title {
+    font-size: 14px;
+    color: #2C333A;
+    margin: 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+}
+
+/* NEW: Badge Style for Count */
+.qc-section-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+    background: #f3f4f6;
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.qc-header-action-btn {
+    width: 100px;
+    height: 26px;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    transition: all 0.2s ease;
+}
+
+/* QC Validation Content - Wrapper for views */
+.qc-validation-content {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    width: 100%;
+}
+
+/* Explicit Full Width Containers for View/Edit Modes */
+.qc-view-container,
+.qc-edit-container,
+.qc-pdm-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+/* Force inner views to fit parent */
+.qc-pdm-builder-view {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+/* QC Edit Heading List Styles (Mirrored) */
+.qc-grouped-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    min-height: auto;
+    gap: 12px;
+}
+
+.qc-grouped-heading:hover {
+    border: 1px solid #e2e8f0;
+}
+
+.qc-grouped-heading-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.qc-grouped-heading-name {
+    font-size: 14px;
+    color: #242b33;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    flex: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    white-space: normal;
+}
+
+.qc-remove-heading-btn {
+    padding: 4px 8px;
+    background: transparent;
+    color: #dc2626;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qc-remove-heading-btn:hover {
+    font-size: 15px;
+}
+
+.qc-empty-state {
+    padding: 60px 20px;
+    text-align: center;
+    color: #9ca3af;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 200px;
+    height: 100%;
+}
+
+.qc-empty-state i {
+    font-size: 48px;
+    color: #d1d5db;
+    margin-bottom: 12px;
+}
+
+.qc-empty-state p {
+    font-size: 14px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    margin: 0;
+}
+
+/* Scrollbar Styles */
+.qc-pdms-list::-webkit-scrollbar,
+.qc-pdm-details-side::-webkit-scrollbar,
+.qc-subsections-side::-webkit-scrollbar,
+.qc-error-dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.qc-pdms-list::-webkit-scrollbar-track,
+.qc-pdm-details-side::-webkit-scrollbar-track,
+.qc-subsections-side::-webkit-scrollbar-track,
+.qc-error-dropdown-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.qc-pdms-list::-webkit-scrollbar-thumb,
+.qc-pdm-details-side::-webkit-scrollbar-thumb,
+.qc-subsections-side::-webkit-scrollbar-thumb,
+.qc-error-dropdown-menu::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.qc-pdms-list::-webkit-scrollbar-thumb:hover,
+.qc-pdm-details-side::-webkit-scrollbar-thumb:hover,
+.qc-subsections-side::-webkit-scrollbar-thumb:hover,
+.qc-error-dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive Styles */
+@media (max-width: 1400px) {
+    .qc-review-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    .qc-pdm-details-side {
+    }
+}
+
+@media (max-width: 1200px) {
+    .qc-review-container {
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .qc-pdms-list-section,
+    .qc-validation-section,
+    .qc-headings-section,
+    .qc-defective-pdms-section {
+        max-width: 100%;
+        width: 100%;
+        flex: none;
+    }
+
+    .qc-pdms-controls {
+        flex-direction: column;
+    }
+
+    .qc-pdm-family-filter {
+        width: 100%;
+    }
+}
+
+/* QC Edit Mode */
+.qc-review-edit-mode {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    padding: 16px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.qc-edit-builder {
+    width: 100%;
+
+}
+
+.qc-edit-headings-list {
+    min-height: 120px;
+    border: 2px dashed #e2e8f0;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 20px;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.remove-heading-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.remove-heading-btn:hover {
+    background: #fee2e2;
+}
+
+.grouped-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.grouped-heading-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.grouped-heading-name {
+    font-size: 13px;
+    color: #334155;
+    font-weight: 500;
+}
+
+/* Mini View Container (Hidden by default on large screens) */
+.qc-qc-mini-view,
+.qc-defective-mini-view {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    padding-top: 10px;
+}
+
+/* Mini Indicator Card (Small Square - Defective) */
+.defective-mini-card {
+    width: 36px;
+    height: 36px;
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.defective-mini-card:hover {
+    border-color: #dc2626;
+
+}
+
+.defective-mini-card i {
+    color: #dc2626;
+    font-size: 14px;
+}
+
+
+.defective-mini-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #dc2626;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+}
+
+/* Mini Indicator Card (Small Square - QC Standard) */
+.qc-mini-card {
+    width: 36px;
+    height: 36px;
+    background-color: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.qc-mini-card:hover {
+    border-color: #2563eb;
+}
+
+.qc-mini-card i {
+    color: #3b82f6;
+    font-size: 14px;
+}
+
+.qc-mini-card.checked {
+    background-color: #ecfdf5;
+    border-color: #d1fae5;
+}
+
+.qc-mini-card.checked i {
+    color: #10b981;
+}
+
+.qc-mini-card.checked:hover {
+    border-color: #059669;
+}
+
+/* Breakpoint for Laptop Screens */
+@media (max-width: 1900px) {
+
+    .qc-pdms-list-section,
+    .qc-defective-pdms-section {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+        position: relative;
+        z-index: 10;
+        min-width: 0 !important;
+    }
+
+
+    .qc-pdms-list-section.collapsed,
+    .qc-defective-pdms-section.collapsed {
+        flex: none !important;
+        width: 70px !important;
+        padding: 12px 6px !important;
+        cursor: pointer;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* Hide Main Content when Collapsed */
+    .qc-pdms-list-section.collapsed .qc-section-header,
+    .qc-pdms-list-section.collapsed .grouped-pdms-controls,
+    .qc-pdms-list-section.collapsed .qc-pdms-list,
+    .qc-defective-pdms-section.collapsed .qc-section-header,
+    .qc-defective-pdms-section.collapsed .qc-defective-pdms-content {
+        display: none !important;
+    }
+
+    /* Show Mini View when Collapsed */
+    .qc-pdms-list-section.collapsed .qc-qc-mini-view,
+    .qc-defective-pdms-section.collapsed .qc-defective-mini-view {
+        display: flex !important;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .qc-pdms-list-section.expanded,
+    .qc-defective-pdms-section.expanded {
+        width: 350px !important;
+        flex: none !important;
+        cursor: default;
+    }
+
+    /* Hide Mini View when Expanded */
+    .qc-pdms-list-section.expanded .qc-qc-mini-view,
+    .qc-defective-pdms-section.expanded .qc-defective-mini-view {
+        display: none !important;
+    }
+
+    /* Show Main Content when Expanded */
+    .qc-pdms-list-section.expanded .qc-section-header,
+    .qc-pdms-list-section.expanded .qc-pdms-controls,
+    .qc-pdms-list-section.expanded .qc-pdms-list,
+    .qc-defective-pdms-section.expanded .qc-section-header,
+    .qc-defective-pdms-section.expanded .qc-defective-pdms-content {
+        display: flex !important;
+        animation: fadeIn 0.3s ease;
+    }
+}
+
+/* Missed Heading Button Style */
+.missed-btn {
+    background-color: #f59e0b;
+    color: white;
+    border: 1px solid #d97706;
+}
+
+.missed-btn:hover {
+    background-color: #d97706;
+}
+
+/* Add Heading Button Style */
+.add-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+}
+
+.add-btn:hover {
+    background-color: #357abd;
+}
+
+/* Allow PDM View Content to grow for scrolling */
+.qc-pdm-container {
+    height: auto !important;
+    min-height: 100%;
+}
+
+/* QC Error Delete Button */
+.qc-error-delete-btn {
+    color: #94a3b8;
+    /* Slate 400 - Default Grey */
+    transition: color 0.2s ease;
+}
+
+.qc-error-delete-btn:hover {
+    color: #ef4444 !important;
+    /* Red 500 - Hover Red */
+}

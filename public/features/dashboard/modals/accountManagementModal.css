@@ -1,0 +1,186 @@
+/* Account Management Modal Styles */
+.account-management-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.account-management-modal {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.account-management-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.account-management-modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2C333A;
+    margin: 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.account-management-modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.account-management-modal-close-btn:hover {
+    color: #dc2626;
+}
+
+.account-management-form-group {
+    margin-bottom: 15px;
+}
+
+.account-management-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 5px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.account-management-form-group input[type="text"],
+.account-management-form-group input[type="url"],
+.account-management-form-group input[type="date"],
+.account-management-form-group select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.account-management-form-group input:focus,
+.account-management-form-group select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.account-management-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.account-management-modal-actions.has-delete {
+    justify-content: space-between;
+}
+
+.account-management-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.account-management-btn-primary {
+    background: #10b981;
+    color: white;
+}
+
+.account-management-btn-primary:hover {
+    background: #059669;
+}
+
+.account-management-btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.account-management-btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+.account-management-btn-danger {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.account-management-btn-danger:hover {
+    background: #b91c1c;
+}
+
+.account-management-btn-danger:disabled {
+    background: #fca5a5;
+    cursor: not-allowed;
+}
+
+.delete-account-section {
+    margin-top: 10px;
+}
+
+.delete-account-confirm-panel {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    background: #fff1f2;
+}
+
+.delete-account-warning-text {
+    margin: 0 0 8px 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7f1d1d;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.delete-account-confirm-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #fca5a5;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.delete-account-confirm-input:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+}
+
+.delete-account-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}

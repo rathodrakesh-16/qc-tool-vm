@@ -1,0 +1,121 @@
+<div id="importSection" class="blank-sheet">
+  <div class="header-container">
+    <div class="header-tabs">
+      <h1 id="importSectionTab" class="active-header">
+        Import Section
+      </h1>
+      <span class="header-separator">|</span>
+      <h1 id="classificationDetailsTab" class="inactive-header">
+        Classification Details
+      </h1>
+    </div>
+    <div class="header-right">
+      <button class="sync-btn">
+        <i class="fas fa-sync-alt"></i> Generate
+      </button>
+      <button class="clear-btn">
+        <i class="fas fa-eraser"></i> Reset All
+      </button>
+    </div>
+  </div>
+
+  <div id="importContent">
+    <div class="qc-import-upload-wrapper upload-section">
+      <div class="section-header">
+        <h2>Import SDMS and QC Tool Files</h2>
+      </div>
+
+      <div class="upload-container">
+        <!-- 1. Afterproof Classification Data -->
+        <div class="upload-item">
+          <input type="file" id="afterproofClassificationImport" accept=".xlsx,.xls,.csv" />
+
+          <label for="afterproofClassificationImport" class="upload-label" id="afterproofClassificationLabel">
+            <i class="fas fa-file-invoice upload-icon"></i>
+            <div class="upload-animation-container"></div>
+            <div class="upload-text-container">
+              <span class="upload-text">Import Afterproof Classifications</span>
+              <span class="upload-subtext">Click to select file</span>
+            </div>
+            <div class="delete-file-container" data-input-id="afterproofClassificationImport">
+              <i class="fas fa-times delete-file-icon" title="Clear File"></i>
+            </div>
+          </label>
+        </div>
+
+        <!-- 2. Afterproof PDM Data -->
+        <div class="upload-item">
+          <input type="file" id="afterproofPDMImport" accept=".xlsx,.xls,.csv" />
+
+          <label for="afterproofPDMImport" class="upload-label" id="afterproofPDMLabel">
+            <i class="fas fa-database upload-icon"></i>
+            <div class="upload-animation-container"></div>
+            <div class="upload-text-container">
+              <span class="upload-text">Import Afterproof PDMs</span>
+              <span class="upload-subtext">Click to select file</span>
+            </div>
+            <div class="delete-file-container" data-input-id="afterproofPDMImport">
+              <i class="fas fa-times delete-file-icon" title="Clear File"></i>
+            </div>
+          </label>
+        </div>
+
+        <!-- 3. Beforeproof Data -->
+        <div class="upload-item">
+          <input type="file" id="backupScraperImport" accept=".xlsx,.xls,.csv" />
+
+          <label for="backupScraperImport" class="upload-label" id="beforeproofLabel">
+            <i class="fas fa-history upload-icon"></i>
+            <div class="upload-animation-container"></div>
+            <div class="upload-text-container">
+              <span class="upload-text">Import Beforeproof Data</span>
+              <span class="upload-subtext">Click to select file</span>
+            </div>
+            <div class="delete-file-container" data-input-id="backupScraperImport">
+              <i class="fas fa-times delete-file-icon" title="Clear File"></i>
+            </div>
+          </label>
+        </div>
+
+        <!-- 4. QC Tool Data (Placeholder) -->
+        <div class="upload-item">
+          <input type="file" id="qcToolDataImport" accept=".xlsx,.xls,.csv" disabled />
+          <!-- Disabled for now -->
+
+          <label for="qcToolDataImport" class="upload-label" id="qcToolDataLabel"
+            style="opacity: 0.6; cursor: not-allowed">
+            <i class="fas fa-tools upload-icon"></i>
+            <div class="upload-animation-container"></div>
+            <div class="upload-text-container">
+              <span class="upload-text">Import QC Tool Data</span>
+              <span class="upload-subtext">Coming Soon</span>
+            </div>
+            <div class="delete-file-container" data-input-id="qcToolDataImport">
+              <i class="fas fa-times delete-file-icon" title="Clear File"></i>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="scraper-section saved-section" id="savedDataSection">
+      <div class="section-header">
+        <div class="saved-data-tabs" id="savedDataTabs"></div>
+      </div>
+      <div class="saved-data-content" id="savedDataContent"></div>
+    </div>
+  </div>
+
+  <div id="classificationDetailsContent" style="display: none">
+    <div class="scraper-section classification-details-section">
+      <table id="classificationDetailsTable">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <span class="scroll-to-top-icon" title="Scroll to Top">
+    <i class="fas fa-chevron-up"></i>
+  </span>
+</div>

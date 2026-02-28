@@ -1,0 +1,114 @@
+/* Common styling for section titles */
+.dashboard-section-title {
+    font-size: 15px;
+    color: #111827;
+    margin: 0 0 16px 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f4f6;
+    flex: 0 0 auto;
+}
+
+/* Specific styling for dashboard documents panel */
+.dashboard-documents-panel .dashboard-documents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    max-height: none;
+    padding-top: 4px;
+}
+
+.dashboard-document-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 0;
+    transition: all 0.2s ease;
+}
+
+.dashboard-document-card:hover {
+    border-color: #4a90e2;
+}
+
+.dashboard-document-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dashboard-document-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #f0f9ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #e0f2fe;
+}
+
+.dashboard-document-icon {
+    font-size: 16px;
+    color: #0284c7;
+}
+
+.dashboard-document-name {
+    font-size: 14px;
+    color: #1f2937;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.dashboard-document-link {
+    font-size: 13px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-document-link:hover {
+    color: #0284c7;
+}
+
+.dashboard-document-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dashboard-document-delete-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.dashboard-document-delete-btn:hover {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.dashboard-document-delete-btn i {
+    font-size: 13px;
+}

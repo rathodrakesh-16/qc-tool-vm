@@ -1,0 +1,209 @@
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    grid-template-rows: auto;
+    gap: 5px;
+    min-height: 0;
+    height: auto;
+    align-items: start;
+}
+
+/* Response for smaller screens */
+@media (max-width: 1400px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 300px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dashboard-panel {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    height: 100%;
+    max-height: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-search-filter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 8px;
+    background-color: #f8fafc;
+    border-radius: 4px;
+    flex-wrap: wrap;
+}
+
+.create-account-btn {
+    padding: 7px 15px;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.create-account-btn:hover {
+    background: #059669;
+}
+
+.create-account-btn.add-update-btn {
+    background-color: #f59e0b;
+}
+
+.create-account-btn.add-update-btn:hover {
+    background-color: #d97706;
+}
+
+.create-account-btn.add-document-btn {
+    background-color: #3b82f6;
+}
+
+.create-account-btn.add-document-btn:hover {
+    background-color: #2563eb;
+}
+
+.dashboard-search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 6px 10px;
+    background: white;
+    flex: 1;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.dashboard-search-bar:focus-within {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.dashboard-search-bar i {
+    font-size: 13px;
+    color: #6b7280;
+    margin-right: 8px;
+}
+
+.dashboard-search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 13px;
+    color: #1f2937;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.dashboard-search-bar input::placeholder {
+    color: #9ca3af;
+}
+
+.dashboard-filter-select {
+    padding: 6px 15px 6px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: white;
+    font-size: 13px;
+    color: #1f2937;
+    cursor: pointer;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    min-width: 140px;
+}
+
+.dashboard-filter-select:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+.assigned-accounts-cards-container::-webkit-scrollbar,
+.dashboard-documents-list::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.assigned-accounts-cards-container::-webkit-scrollbar-track,
+.dashboard-documents-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.assigned-accounts-cards-container::-webkit-scrollbar-thumb,
+.dashboard-documents-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.assigned-accounts-cards-container::-webkit-scrollbar-thumb:hover,
+.dashboard-documents-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header-container h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2C333A;
+    margin: 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.header-container .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .dashboard-search-filter {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .dashboard-search-bar,
+    .dashboard-filter-select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .header-container .header-right {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,302 @@
+/* Search Filter Styles */
+.search-filter-btn {
+    padding: 6px 8px;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+}
+
+.search-filter-btn:hover,
+.search-filter-btn.active {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.search-filter-btn.has-filters {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+}
+
+.search-filter-btn.has-filters i {
+    color: #2563eb;
+}
+
+.filter-dialog {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 220px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding: 12px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.filter-dialog.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.filter-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.filter-dialog-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin: 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.close-filter-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.close-filter-btn:hover {
+    color: #ef4444;
+    background: #fef2f2;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.dialog-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #334155;
+    background: #f8fafc;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.dialog-select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: white;
+}
+
+/* Account Files Filter Dialog Specifics (if any overrides needed) */
+#accountFilesFilterDialog,
+#qc-accountFilesFilterDialog,
+#pageAccountFilesFilterDialog {
+    width: 250px;
+    top: 100%;
+}
+
+/* =========================================
+   Consolidated Search & Input Styles
+   ========================================= */
+
+/* Search Containers */
+.import-search-container,
+.qc-pdm-search-container,
+.files-search-box,
+.grouped-pdm-search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-height: fit-content;
+    width: 100%;
+}
+
+/* Specific overrides for search containers */
+.files-search-box {
+    flex: 1;
+    /* In a row layout, this should grow */
+}
+
+.import-search-container {
+    margin-bottom: 12px;
+    /* Restore spacing for production tab */
+}
+
+/* Icons */
+.import-search-icon,
+.qc-pdm-search-icon,
+.files-search-box i,
+.grouped-pdm-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Inputs */
+.import-search-input,
+.qc-pdm-search-input,
+.files-search-box input,
+.grouped-pdm-search-input {
+    flex: 1;
+    padding: 9px 40px 9px 36px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    color: #2C333A;
+    transition: all 0.2s ease;
+    background: #f8fafc;
+    width: 100%;
+    box-sizing: border-box;
+    /* Ensure padding doesn't overflow */
+}
+
+/* Input Focus States */
+.import-search-input:focus,
+.qc-pdm-search-input:focus,
+.files-search-box input:focus,
+.grouped-pdm-search-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Input Placeholders */
+.import-search-input::placeholder,
+.qc-pdm-search-input::placeholder,
+.files-search-box input::placeholder,
+.grouped-pdm-search-input::placeholder {
+    color: #9ca3af;
+}
+
+/* Clear Buttons */
+.clear-search-btn,
+.clear-qc-search-btn,
+.clear-grouped-search-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search-btn:hover,
+.clear-qc-search-btn:hover,
+.clear-grouped-search-btn:hover {
+    color: #ef4444;
+    background: #fee2e2;
+}
+
+.clear-search-btn i,
+.clear-qc-search-btn i,
+.clear-grouped-search-btn i {
+    font-size: 12px;
+}
+
+/* File Upload & Filter Buttons (from Account Files) */
+.files-filter-select,
+.files-upload-btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 36px;
+    /* Explicit height to match inputs */
+}
+
+.files-filter-select {
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #475569;
+    flex: 1;
+}
+
+.files-upload-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+    justify-content: center;
+}
+
+.files-upload-btn:hover {
+    background: #2563eb;
+}
+
+/* Filter Wrapper for Account Files */
+.files-filter-sort {
+    display: flex;
+    gap: 8px;
+}
+
+/* Clear Filter Button in Dialog */
+.filter-dialog-clear-btn {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #ef4444;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 6px 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    margin-top: 4px;
+}
+
+.filter-dialog-clear-btn:hover {
+    background: #fee2e2;
+}

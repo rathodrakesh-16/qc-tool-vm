@@ -1,0 +1,324 @@
+:root {
+    --skeleton-base: #e5e7eb;
+    --skeleton-highlight: #f3f4f6;
+}
+
+.skeleton-block {
+    display: block;
+    border-radius: 6px;
+    background-color: var(--skeleton-base);
+    background-image: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-highlight) 37%, var(--skeleton-base) 63%);
+    background-size: 400% 100%;
+}
+
+.skeleton-line {
+    height: 10px;
+}
+
+.skeleton-pill {
+    height: 18px;
+    border-radius: 999px;
+}
+
+.skeleton-circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+
+.skeleton-h-14 {
+    height: 14px;
+}
+
+.skeleton-w-22 {
+    width: 22%;
+}
+
+.skeleton-w-26 {
+    width: 26%;
+}
+
+.skeleton-w-28 {
+    width: 28%;
+}
+
+.skeleton-w-30 {
+    width: 30%;
+}
+
+.skeleton-w-32 {
+    width: 32%;
+}
+
+.skeleton-w-34 {
+    width: 34%;
+}
+
+.skeleton-w-36 {
+    width: 36%;
+}
+
+.skeleton-w-40 {
+    width: 40%;
+}
+
+.skeleton-w-44 {
+    width: 44%;
+}
+
+.skeleton-w-48 {
+    width: 48%;
+}
+
+.skeleton-w-52 {
+    width: 52%;
+}
+
+.skeleton-w-56 {
+    width: 56%;
+}
+
+.skeleton-w-64 {
+    width: 64%;
+}
+
+.skeleton-w-68 {
+    width: 68%;
+}
+
+.skeleton-w-72 {
+    width: 72%;
+}
+
+.skeleton-shimmer .skeleton-block {
+    animation: skeletonShimmer 1.4s linear infinite;
+}
+
+@keyframes skeletonShimmer {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+.skeleton-account-card {
+    pointer-events: none;
+}
+
+.skeleton-account-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.skeleton-account-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skeleton-account-team {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skeleton-team-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skeleton-account-dates {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #e5e7eb;
+}
+
+.skeleton-account-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.skeleton-documents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.skeleton-document-card {
+    pointer-events: none;
+}
+
+.skeleton-document-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+}
+
+.skeleton-admin-row {
+    pointer-events: none;
+}
+
+.skeleton-admin-row .um-table-cell {
+    display: flex;
+    align-items: center;
+}
+
+.skeleton-user-profile {
+    pointer-events: none;
+}
+
+.skeleton-user-profile .profile-info-content,
+.skeleton-user-profile .profile-stats-group,
+.skeleton-user-profile .profile-details-group,
+.skeleton-user-profile .profile-team-group {
+    gap: 10px;
+}
+
+.skeleton-user-profile .profile-stat-header .skeleton-circle,
+.skeleton-user-profile .profile-info-item .skeleton-circle {
+    width: 16px;
+    height: 16px;
+}
+
+.skeleton-user-profile .profile-info-content .skeleton-line + .skeleton-line {
+    margin-top: 6px;
+}
+
+/* QC Report Skeleton */
+.skeleton-qc-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    width: 100%;
+    pointer-events: none;
+}
+
+.skeleton-qc-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.skeleton-qc-sidebar {
+    width: 400px;
+    flex-shrink: 0;
+}
+
+.skeleton-qc-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.skeleton-qc-card-header {
+    padding: 14px 18px;
+    border-left: 4px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.skeleton-qc-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton-qc-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 16px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.skeleton-qc-row:nth-child(odd) {
+    background-color: #f9fafb;
+}
+
+.skeleton-qc-row:last-child {
+    border-bottom: none;
+}
+
+.skeleton-qc-summary-part {
+    padding: 14px 16px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+
+.skeleton-qc-summary-part:last-child {
+    margin-bottom: 0;
+}
+
+.skeleton-qc-summary-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.skeleton-qc-summary-row:last-child {
+    border-bottom: none;
+}
+
+.skeleton-qc-sidebar-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    position: sticky;
+    top: 24px;
+}
+
+.skeleton-qc-sidebar-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.skeleton-qc-sidebar-badges {
+    display: flex;
+    gap: 8px;
+}
+
+.skeleton-qc-sidebar-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skeleton-qc-validation-item {
+    padding: 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-block {
+        animation: none !important;
+        background-image: none !important;
+    }
+}

@@ -1,0 +1,1142 @@
+/* Styles for the main workspace tab (Production) */
+
+
+.production-container {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding: 16px 0 16px 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Production container children - match QC review child pattern */
+.production-import-headings {
+    flex: 20;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    height: auto;
+}
+
+.production-supported-headings {
+    flex: 20;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    height: auto;
+}
+
+.production-grouping-wrapper {
+    flex: 30;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Inner containers - vertical scroll like QC validation wrapper */
+#pdmBuilderContainer,
+#productionPDMFullViewContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Ensure pdm-builder fills the container - no independent scroll */
+.pdm-builder {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+/* Details section - natural height, scrolls with parent */
+.pdm-builder .pdm-details {
+    flex-shrink: 0;
+}
+
+.production-pdm-library {
+    flex: 30;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    height: auto;
+}
+
+/* Grouped PDMs section (if used as separate section) */
+.grouped-pdms-section {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Section Base Styles */
+.production-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.production-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+    flex-shrink: 0;
+}
+
+.production-section-title {
+    font-size: 14px;
+    color: #2C333A;
+    margin: 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.production-section-title i {
+    display: none;
+}
+
+/* Badge Style for Count (Mirrored from QC Review) */
+.production-section-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+    background: #f3f4f6;
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+/* Import Section Specific Styles */
+.import-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+    min-height: fit-content;
+    flex-wrap: wrap;
+}
+
+.import-btn {
+    padding: 7px 15px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    font-weight: 500;
+}
+
+.import-btn:hover {
+    background: #357abd;
+}
+
+.import-btn i {
+    font-size: 12px;
+}
+
+.family-filter {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    background-color: #fff;
+    flex-shrink: 0;
+}
+
+.family-filter:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+
+
+/* Imported Headings List - Card Based */
+.imported-headings-list,
+.supported-headings-list {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    min-height: 200px;
+}
+
+/* Override for headings lists - Remove border and padding wrapper */
+.imported-headings-list,
+.supported-headings-list {
+    border: none;
+    padding: 0;
+    background: transparent;
+}
+
+.imported-headings-list.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* UPDATED: Imported Heading Item */
+.imported-heading-item,
+.supported-heading-item,
+.grouped-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    min-height: auto;
+    gap: 12px;
+}
+
+.imported-heading-item:hover,
+.supported-heading-item:hover,
+.grouped-heading:hover {
+    border: 1px solid #e2e8f0;
+
+}
+
+.imported-heading-info,
+.supported-heading-info,
+.grouped-heading-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Heading Name Styles moved to pdmUtils.css */
+
+
+
+/* Status Badge Styles moved to pdmUtils.css */
+
+.supported-headings-list.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* ============================================
+   SUPPORTED LINK GROUP STYLES
+   ============================================ */
+
+/* Supported Link Group Container */
+.supported-link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px;
+    background: #fafbfc;
+}
+
+.supported-link-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Supported Link Header */
+.supported-link-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    background: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 5px;
+}
+
+.supported-link-icon {
+    color: #4a90e2;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.supported-link-url {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: #4a90e2;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+.supported-link-url:hover {
+    color: #357abd;
+    text-decoration: underline;
+}
+
+.supported-link-count {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+    background: #f3f4f6;
+    padding: 2px 8px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+/* Supported Link Headings Container */
+.supported-link-headings {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Adjust heading items inside groups */
+.supported-link-group .supported-heading-item {
+    background: #ffffff;
+}
+
+.remove-heading-btn {
+    padding: 4px 8px;
+    background: transparent;
+    color: #dc2626;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-heading-btn:hover {
+    font-size: 15px;
+}
+
+.supported-count {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+/* Grouping Section */
+.grouping-section-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+}
+
+/* Import History Modal */
+.import-history-modal {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+}
+
+.import-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.import-history-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2C333A;
+    margin: 0;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.import-history-title i {
+    color: #10b981;
+}
+
+.close-history-btn {
+    padding: 6px 12px;
+    background: #f3f4f6;
+    color: #2C333A;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.close-history-btn:hover {
+    background: #e5e7eb;
+}
+
+.import-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.import-history-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 14px 16px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.import-history-item:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.import-history-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+.import-history-item-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    width: 100%;
+    font-size: 13px;
+}
+
+.import-history-family {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a90e2;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+.import-history-timestamp-inline {
+    margin-left: auto;
+    color: #6b7280;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.import-history-item-actions {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.delete-history-btn {
+    padding: 6px 10px;
+    background: #fff0f0;
+    color: #dc2626;
+    border: 1px solid #fed7d7;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.delete-history-btn:hover {
+    background: #fecaca;
+    border-color: #fca5a5;
+}
+
+.import-history-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #9ca3af;
+}
+
+.import-history-empty i {
+    font-size: 48px;
+    color: #d1d5db;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.import-history-empty-text {
+    font-size: 14px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+/* Dropdown/Select styling for Company Type - needed in grouping section */
+.pdm-input[id="pdmCompanyType"] {
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.pdm-input[id="pdmCompanyType"]:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: #fff;
+}
+
+.pdm-input[id="pdmCompanyType"]:hover {
+    border-color: #9ca3af;
+}
+
+.pdm-input[id="pdmCompanyType"] option[value=""] {
+    color: #9ca3af;
+}
+
+
+.pdm-input[id="pdmCompanyType"] option {
+    padding: 8px;
+    font-size: 14px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+}
+
+/* PDM Library Search and Filter Controls */
+
+.grouped-pdms-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+    min-width: 0;
+    width: 100%;
+}
+
+.grouped-pdm-search-container {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.grouped-pdm-search-icon {
+    position: absolute;
+    left: 12px;
+    color: #9ca3af;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.grouped-pdm-search-input {
+    flex: 1;
+    padding: 9px 40px 9px 36px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    color: #2C333A;
+    transition: border-color 0.2s ease;
+    width: 100%;
+    min-width: 0;
+    background: #f8fafc;
+}
+
+.grouped-pdm-search-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: #fff;
+}
+
+.grouped-pdm-search-input::placeholder {
+    color: #9ca3af;
+}
+
+.clear-grouped-search-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-grouped-search-btn:hover {
+    color: #ef4444;
+    background: #fee2e2;
+}
+
+.clear-grouped-search-btn i {
+    font-size: 12px;
+}
+
+/* Family Filter */
+.grouped-pdm-family-filter {
+    padding: 9px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    background-color: #f8fafc;
+    color: #2C333A;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.grouped-pdm-family-filter:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: #fff;
+}
+
+.grouped-pdm-family-filter:hover {
+    border-color: #9ca3af;
+}
+
+.grouped-pdm-family-filter option {
+    padding: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Grouped PDMs List */
+.grouped-pdms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    padding-right: 4px;
+    min-height: 0;
+}
+
+/* PDM Card Styles moved to pdmUtils.css */
+.pdm-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.pdm-stats-container {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 9px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+}
+
+.pdm-stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 2px 0;
+}
+
+.pdm-stat-label {
+    font-size: 14px;
+    color: #515861;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+}
+
+.pdm-stat-value {
+    font-size: 14px;
+    color: #000000;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 530;
+    text-align: right;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+}
+
+/* PDM Card Timestamp (simplified card design) */
+.pdm-timestamp-full {
+    font-size: 13px;
+    color: #6b7280;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 8px 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+
+
+/* Scrollbar Styles for PDM Library */
+.grouped-pdms-list::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.grouped-pdms-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.grouped-pdms-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.grouped-pdms-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    .production-container {
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .production-import-headings,
+    .production-supported-headings,
+    .production-grouping-wrapper,
+    .production-pdm-library {
+        max-width: 100%;
+        width: 100%;
+        flex: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .import-controls {
+        flex-direction: column;
+    }
+
+    .pdm-actions {
+        flex-direction: column;
+    }
+
+    .import-history-modal {
+        max-width: 95%;
+        padding: 16px;
+    }
+
+    .import-history-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .import-history-item-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .import-history-timestamp-inline {
+        margin-left: unset;
+    }
+
+    .pdm-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .pdm-timestamp-header {
+        font-size: 10px;
+    }
+
+    .pdm-builder-view-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .pdm-builder-view-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .pdm-view-heading-item {
+        flex-wrap: wrap;
+    }
+
+    .grouped-pdm-search-input {
+        font-size: 12px;
+        padding: 6px 36px 6px 32px;
+    }
+
+    .grouped-pdm-family-filter {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+}
+
+
+
+/* Mini View Containers */
+.production-pdm-mini-view,
+.production-import-mini-view {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    padding-top: 10px;
+}
+
+/* Mini Indicator Card */
+.production-mini-card {
+    width: 36px;
+    height: 36px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+    color: #64748b;
+}
+
+.production-mini-card:hover {
+    background-color: #f1f5f9;
+    color: #334155;
+
+}
+
+.production-mini-card.active {
+    background-color: #e0f2fe;
+    border-color: #7dd3fc;
+    color: #0284c7;
+}
+
+.production-mini-card-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #0284c7;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+}
+
+@media (max-width: 1900px) {
+
+    .production-pdm-library,
+    .production-import-headings {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, flex 0.3s ease;
+        position: relative;
+        z-index: 10;
+        min-width: 0 !important;
+    }
+
+    /* Collapsed State */
+    .production-pdm-library.collapsed,
+    .production-import-headings.collapsed {
+        flex: none !important;
+        width: 70px !important;
+        padding: 12px 6px !important;
+        cursor: pointer;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* Hide Main Content when Collapsed */
+    .production-pdm-library.collapsed .production-section-header,
+    .production-pdm-library.collapsed .grouped-pdm-search-container,
+    .production-pdm-library.collapsed .grouped-pdms-list,
+    .production-pdm-library.collapsed .grouped-pdms-controls,
+    .production-pdm-library.collapsed .pdm-library-filters,
+    .production-import-headings.collapsed .production-section-header,
+    .production-import-headings.collapsed .import-controls,
+    .production-import-headings.collapsed .import-search-container,
+    .production-import-headings.collapsed .import-stats,
+    .production-import-headings.collapsed .imported-headings-list {
+        display: none !important;
+    }
+
+    /* Show Mini View when Collapsed */
+    .production-pdm-library.collapsed .production-pdm-mini-view,
+    .production-import-headings.collapsed .production-import-mini-view {
+        display: flex !important;
+        animation: fadeIn 0.5s ease;
+    }
+
+    /* Expanded State */
+    .production-pdm-library.expanded,
+    .production-import-headings.expanded {
+        width: 350px !important;
+        flex: none !important;
+        cursor: default;
+    }
+
+    /* Hide Mini View when Expanded */
+    .production-pdm-library.expanded .production-pdm-mini-view,
+    .production-import-headings.expanded .production-import-mini-view {
+        display: none !important;
+    }
+
+    /* Show Main Content when Expanded */
+    .production-pdm-library.expanded .production-section-header,
+    .production-pdm-library.expanded .grouped-pdm-search-container,
+    .production-pdm-library.expanded .grouped-pdms-list,
+    .production-pdm-library.expanded .pdm-library-filters,
+    .production-import-headings.expanded .production-section-header,
+    .production-import-headings.expanded .import-controls,
+    .production-import-headings.expanded .import-stats,
+    .production-import-headings.expanded .headings-list-container {
+        display: flex !important;
+        animation: fadeIn 0.3s ease;
+    }
+}
+
+/* Utility / Helper Classes for index.html cleanup */
+.flex-center-gap {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.import-btn-small,
+.import-history-btn {
+    width: 28px;
+    height: 26px;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    min-height: unset;
+}
+
+.flex-row-gap {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    gap: 8px;
+}
+
+.flex-grow-1 {
+    flex: 1;
+}
+
+.width-full {
+    width: 100%;
+    min-width: 0;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.align-center-gap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* Selection Styles */
+.imported-heading-item,
+.supported-heading-item {
+    cursor: pointer;
+}
+
+.imported-heading-item.selected,
+.supported-heading-item.selected {
+    background-color: #e0f2fe;
+    border-color: #7dd3fc;
+}
+
+/* Updated Supported Controls Layout */
+.supported-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* Action Buttons */
+.action-btn-small {
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Calibri', 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+
+.add-btn {
+    background: #f8fafc;
+    color: #2C333A;
+    border: 1px solid #cbd5e1;
+    align-self: stretch;
+    margin-left: 8px;
+    height: auto;
+}
+
+.add-btn:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.group-btn {
+    background: #dcfce7;
+    color: #15803d;
+    border-color: #bbf7d0;
+}
+
+.group-btn:hover {
+    background: #bbf7d0;
+}
+
+.remove-btn {
+    padding: 8px 14px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.remove-btn:hover {
+    background: #dc2626;
+}
+
+.align-center-gap {
+    gap: 8px;
+}
+
+/* Production Report Unified Section */
+.production-unified-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    /* Match other sections */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.production-unified-section .production-report-section-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    flex-shrink: 0;
+}
+
+/* Hide Type of Proof, URL, and Headings sections when CoPro Mode is active */
+.pdm-builder.copro-mode #pdmTypeOfProofContainer,
+.pdm-builder.copro-mode #pdmURLContainer,
+.pdm-builder.copro-mode .pdm-counter-group {
+    display: none;
+}
