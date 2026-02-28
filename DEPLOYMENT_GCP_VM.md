@@ -166,7 +166,7 @@ composer --version
 cd /var/www
 
 # Clone the repository — Laravel files are at the repo root
-sudo git clone https://github.com/rathodrakesh-16/qc-tool-v0.2.15.git qctool
+sudo git clone https://github.com/rathodrakesh-16/qc-tool-vm.git qctool
 
 # Set ownership
 sudo chown -R www-data:www-data /var/www/qctool
